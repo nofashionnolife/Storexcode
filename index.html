@@ -244,6 +244,78 @@ img{max-width:100%;display:block;}
 .pd-desc{color:var(--ink-soft);font-size:14.5px;margin:14px 0;white-space:pre-line;}
 .pd-price{font-size:28px;font-weight:700;margin:10px 0 4px;}
 
+/* ---------- Admin ---------- */
+.admin-shell{display:grid;grid-template-columns:230px 1fr;min-height:100vh;background:#F3F2EF;}
+.admin-sidebar{background:#1F2328;color:#D4D6D9;padding:20px 14px;}
+.admin-sidebar .brand{color:#fff;font-family:'Space Grotesk';font-weight:700;font-size:19px;margin-bottom:20px;padding:0 6px;}
+.admin-sidebar .brand .x{color:var(--primary);}
+.admin-sidebar a,.admin-sidebar button.navlink{display:block;width:100%;text-align:left;background:none;border:none;color:#B7BABE;padding:9px 10px;border-radius:6px;font-size:13.5px;font-weight:600;margin-bottom:2px;}
+.admin-sidebar a:hover,.admin-sidebar button.navlink:hover{background:#2C3036;color:#fff;}
+.admin-sidebar a.active,.admin-sidebar button.navlink.active{background:var(--primary);color:#fff;}
+.admin-sidebar .group-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:#71757B;margin:16px 6px 6px;}
+.admin-main{padding:26px 30px;overflow-x:auto;}
+.admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;}
+.admin-topbar h1{font-size:22px;margin:0;}
+.admin-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:18px;}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:20px;}
+.stat-box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px;}
+.stat-box b{font-size:26px;display:block;font-family:'Space Grotesk';}
+.stat-box span{font-size:12.5px;color:var(--ink-soft);}
+.admin-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.admin-table th{text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);color:var(--ink-soft);font-size:12px;text-transform:uppercase;letter-spacing:.03em;}
+.admin-table td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:middle;}
+.admin-table img{width:40px;height:40px;object-fit:cover;border-radius:4px;}
+.row-actions{display:flex;gap:6px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media (max-width:700px){.form-grid{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:2px;}
+.field.full{grid-column:1/-1;}
+.field label{font-size:12.5px;font-weight:600;color:var(--ink-soft);}
+.field input[type=text],.field input[type=number],.field input[type=url],.field input[type=password],.field input[type=datetime-local],.field select,.field textarea{
+  border:1.5px solid var(--line);border-radius:6px;padding:9px 10px;font-size:13.5px;font-family:inherit;background:#fff;color:var(--ink);
+}
+.field textarea{resize:vertical;min-height:70px;}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--primary);}
+.checkline{display:flex;align-items:center;gap:8px;font-size:13.5px;}
+.badge-status{font-size:11px;font-weight:700;padding:3px 8px;border-radius:20px;}
+.badge-status.on{background:#E9F7EE;color:#1a7f37;}
+.badge-status.off{background:#F1EFEA;color:#8A8D91;}
+.modal-overlay{position:fixed;inset:0;background:rgba(20,20,20,.5);display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;z-index:100;}
+.modal-box{background:#fff;border-radius:12px;padding:24px;width:100%;max-width:640px;}
+.modal-box h2{margin:0 0 16px;font-size:19px;}
+.modal-close-row{display:flex;justify-content:flex-end;gap:10px;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);}
+.section-list-item{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:8px;cursor:grab;}
+.section-list-item.dragging{opacity:.4;}
+.section-list-item .handle{color:var(--ink-soft);font-size:16px;}
+.section-list-item .meta{flex:1;}
+.section-list-item .meta b{font-size:13.5px;}
+.section-list-item .meta div{font-size:11.5px;color:var(--ink-soft);}
+.thumb-picker{display:flex;flex-wrap:wrap;gap:8px;}
+.thumb-picker .t{width:64px;height:64px;border:2px solid var(--line);border-radius:6px;overflow:hidden;cursor:pointer;}
+.thumb-picker .t.sel{border-color:var(--primary);}
+.thumb-picker .t img{width:100%;height:100%;object-fit:cover;}
+.upload-box{border:1.5px dashed var(--line);border-radius:8px;padding:14px;text-align:center;font-size:12.5px;color:var(--ink-soft);}
+.upload-note{font-size:11.5px;color:var(--primary-dark);background:#FFF4EA;border:1px solid #F5D8B8;padding:6px 9px;border-radius:6px;margin-top:8px;text-align:left;}
+.seo-fieldset{border:1px dashed var(--line);border-radius:8px;padding:14px;margin-top:6px;}
+.seo-fieldset legend{font-size:12.5px;font-weight:700;color:var(--ink-soft);padding:0 6px;}
+.login-shell{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#1F2328;}
+.login-card{background:#fff;border-radius:12px;padding:34px;width:100%;max-width:360px;}
+.swatch{display:inline-block;width:16px;height:16px;border-radius:4px;border:1px solid var(--line);vertical-align:middle;margin-right:6px;}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--ink);color:#fff;padding:12px 18px;border-radius:8px;font-size:13.5px;z-index:200;box-shadow:0 6px 20px rgba(0,0,0,.25);}
+.help-note{font-size:12px;color:var(--ink-soft);background:#FFF8EE;border:1px solid #F0DDBB;padding:8px 10px;border-radius:6px;margin-bottom:14px;}
+.admin-hamburger{display:none;}
+.admin-drawer-overlay{display:none;}
+@media (max-width:900px){
+  .admin-shell{grid-template-columns:1fr;}
+  .admin-hamburger{display:inline-flex;align-items:center;justify-content:center;background:#1F2328;color:#fff;border:none;width:42px;height:42px;border-radius:8px;position:fixed;top:14px;left:14px;z-index:70;box-shadow:0 2px 12px rgba(0,0,0,.3);}
+  .admin-hamburger svg{width:22px;height:22px;}
+  .admin-drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:55;}
+  .admin-drawer-overlay.open{display:block;}
+  .admin-sidebar{position:fixed;top:0;left:0;height:100%;width:80%;max-width:290px;z-index:65;padding:20px 14px;overflow-y:auto;transform:translateX(-105%);transition:transform .25s ease;display:block;}
+  .admin-sidebar.open{transform:translateX(0);}
+  .admin-sidebar .group-label{display:block;}
+  .admin-main{padding:70px 16px 26px;}
+}
 </style>
 </head>
 <body>
@@ -253,9 +325,23 @@ img{max-width:100%;display:block;}
    Store.X — single-file storefront + admin (client-side persistence)
    ============================================================ */
 
-/* Store.X offline-first configuration: no cloud backend, no local image storage, no external backend. */
-const STORAGE_PREFIX = 'storex-offline-v3';
-let MEDIA_UPLOAD_BUSY = false;
+const CLOUDINARY_CLOUD_NAME = 'u5bybnjc';
+const CLOUDINARY_UPLOAD_PRESET = 'storex_preset';
+const CLOUDINARY_IMAGE_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+const CLOUDINARY_RAW_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/raw/upload`;
+// IMPORTANT: Cloudinary does not allow direct unsigned REST uploads to overwrite an existing asset.
+// Put your secure server/serverless endpoint here. The endpoint must accept POST JSON:
+// { key: string, data: any } and perform a SIGNED Cloudinary raw upload with overwrite=true.
+// Leave empty only for local-cache mode.
+const CLOUDINARY_SYNC_ENDPOINT = ''; // e.g. https://your-worker.example.com/storex-sync
+const CLOUDINARY_TRANSFORM = 'f_auto,q_auto:good,dpr_auto';
+const CLOUDINARY_STATE_FOLDER = 'storex-state';
+let CLOUDINARY_SYNC_BUSY = false;
+let CLOUDINARY_SYNC_TIMER = null;
+let CLOUDINARY_SYNC_QUEUE = Promise.resolve();
+let CLOUDINARY_LAST_SYNC = 0;
+const CLOUDINARY_SYNC_INTERVAL = 5000; // storefront clients check for admin changes every 5 seconds
+const CLOUDINARY_STATE_CACHE_BUSTER = () => Date.now().toString();
 
 // Global application state. These declarations are required before boot().
 let SETTINGS = null;
@@ -291,7 +377,7 @@ function slugify(str){
     .replace(/[^a-z0-9]+/g,'-')
     .replace(/^-+|-+$/g,'');
 }
-// Basic http/https URL validation used before sending an image URL to local image storage.
+// Basic http/https URL validation used before sending an image URL to Cloudinary.
 function isValidHttpUrl(str){
   try{
     const u = new URL(str);
@@ -306,7 +392,7 @@ const DEFAULT_SETTINGS = {
   favicon: '', gaId: '', adminPass: 'storex-admin', darazStoreUrl: '',
   hero: { image:'', desktopImage:'', mobileImage:'', title:'Shop the Deals', subtitle:'Discover great products and deals.', buttonText:'Shop Now', buttonLink:'#/' },
   footer: { about:'Store.X is a product discovery site.', copyright:'© Store.X', social:{} },
-  search: { trending: [] },
+  search: { trending: [], maxSuggestions: 10, letterSuggestions: {} },
   nav: [],
   sections: [],
   mediaSizing: { categoryHeight:130, productRatio:'1/1', flashHeight:360, promoHeight:260 }
@@ -324,60 +410,255 @@ const KEYS = {
 };
 
 function localRead(key,fallback){
-  try{const r=localStorage.getItem(STORAGE_PREFIX+'-'+key);return r?JSON.parse(r):fallback;}catch(_){return fallback;}
+  try{const r=localStorage.getItem(key);return r?JSON.parse(r):fallback;}catch(_){return fallback;}
 }
 function localWrite(key,val){
-  try{localStorage.setItem(STORAGE_PREFIX+'-'+key,JSON.stringify(val));}catch(_){
-    try{toast('Storage is full. Download your store code from Admin > Code & Export.');}catch(e){}
+  try{localStorage.setItem(key,JSON.stringify(val));}catch(_){ }
+}
+function cloudinaryStatePublicUrl(key, bustCache=true){
+  const safe=String(key).replace(/[^A-Za-z0-9._-]/g,'_');
+  const base=`https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/raw/upload/${CLOUDINARY_STATE_FOLDER}/${safe}.json`;
+  return bustCache ? `${base}?v=${Date.now()}&cb=${Math.random().toString(36).slice(2)}` : base;
+}
+
+/*
+ * Cloudinary is the shared source of truth. localStorage is only a fast cache.
+ * Browser-safe synchronization is intentionally done with an UNSIGNED upload
+ * preset; no Cloudinary API secret is ever embedded in this HTML file.
+ */
+async function cloudinaryFetchWithTimeout(url, options={}, timeoutMs=20000){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),timeoutMs);
+  try{
+    return await fetch(url,Object.assign({},options,{signal:controller.signal,cache:'no-store'}));
+  }finally{ clearTimeout(timer); }
+}
+
+async function cloudinaryUploadJson(key,val){
+  // Secure mode: the browser sends state to your serverless endpoint. The
+  // Cloudinary API secret never belongs in this HTML file.
+  if(CLOUDINARY_SYNC_ENDPOINT){
+    const payload={schema:3,key,updatedAt:new Date().toISOString(),updatedMs:Date.now(),data:val};
+    let lastError=null;
+    for(let attempt=1;attempt<=3;attempt++){
+      try{
+        const res=await cloudinaryFetchWithTimeout(CLOUDINARY_SYNC_ENDPOINT,{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(payload)
+        },20000);
+        let data={}; try{data=await res.json();}catch(_){}
+        if(res.ok && (data.ok===true || data.secure_url || data.result)) return data;
+        lastError=new Error(data?.error || data?.message || `Sync endpoint failed (HTTP ${res.status})`);
+      }catch(e){ lastError=e; }
+      if(attempt<3) await new Promise(r=>setTimeout(r,700*attempt));
+    }
+    throw lastError || new Error('Secure Cloudinary sync failed');
+  }
+
+  // Do NOT attempt an unsigned overwrite. Cloudinary explicitly treats
+  // overwrite=false for unsigned REST uploads, even if the request contains
+  // overwrite=true. Doing so only creates the misleading failure seen in the
+  // original Store.X file.
+  throw new Error('Cloudinary sync endpoint is not configured. Direct unsigned RAW overwrite is not supported.');
+}
+async function loadFromCloudinary(key){
+  try{
+    const res=await cloudinaryFetchWithTimeout(cloudinaryStatePublicUrl(key,true),{
+      method:'GET',headers:{'Accept':'application/json'}
+    },12000);
+    if(!res.ok)return null;
+    const payload=await res.json();
+    // New files are wrapped with metadata; accept the old plain-JSON format too.
+    if(payload && payload.schema===3 && Object.prototype.hasOwnProperty.call(payload,'data')) return payload.data;
+    return payload;
+  }catch(e){
+    console.warn('Cloudinary state read skipped:',key,e.message||e);
+    return null;
   }
 }
-async function loadKey(key,fallback){return localRead(key,fallback);}
-function saveKey(key,val){localWrite(key,val);applyTheme();render();}
 
-function optimizedImageUrl(url){ return url||''; }
-function isRemoteImageUrl(){ return false; }
-
-function fileToDataUrl(file){
-  return new Promise((resolve,reject)=>{
-    const r=new FileReader();
-    r.onload=()=>resolve(r.result);
-    r.onerror=()=>reject(r.error||new Error('Could not read image'));
-    r.readAsDataURL(file);
-  });
+async function saveToCloudinary(key,val){
+  const data=await cloudinaryUploadJson(key,val);
+  CLOUDINARY_LAST_SYNC=Date.now();
+  return !!data.secure_url;
 }
-async function localImageFile(file){ return fileToDataUrl(file); }
-async function storeImageUrl(rawUrl){
+
+function cloudinaryStateKeys(){
+  return [KEYS.settings,KEYS.products,KEYS.categories,KEYS.flashsales,KEYS.banners,KEYS.media,KEYS.pages];
+}
+
+// Serialize writes. A snapshot is captured at the moment Save is pressed, so
+// rapid edits cannot accidentally upload a mutable object later.
+function queueCloudinarySave(key,val){
+  const snapshot=JSON.parse(JSON.stringify(val));
+  const job=CLOUDINARY_SYNC_QUEUE.catch(()=>{}).then(()=>saveToCloudinary(key,snapshot));
+  CLOUDINARY_SYNC_QUEUE=job.catch(e=>{
+    console.warn('Queued Cloudinary sync failed:',e.message||e);
+    throw e;
+  });
+  return job;
+}
+
+async function loadKey(key,fallback){
+  // Cloudinary first: this prevents another browser's newer state from being
+  // hidden by stale localStorage. Only use the local cache when Cloudinary is
+  // unreachable or the shared object does not exist yet.
+  const remote=await loadFromCloudinary(key);
+  if(remote!==null){ localWrite(key,remote); return remote; }
+  return localRead(key,fallback);
+}
+
+async function saveKey(key,val){
+  localWrite(key,val);
+  applyTheme();
+  render();
+  try{
+    await queueCloudinarySave(key,val);
+    toast('Saved to Cloudinary ✓');
+    return true;
+  }catch(e){
+    toast(CLOUDINARY_SYNC_ENDPOINT ? 'Cloudinary sync failed — change kept locally; retrying.' : 'Saved locally. Add a secure Cloudinary sync endpoint to enable cross-user backup.');
+    return false;
+  }
+}
+
+async function refreshStateFromCloudinary(forceRender=false){
+  if(CLOUDINARY_SYNC_BUSY)return;
+  CLOUDINARY_SYNC_BUSY=true;
+  try{
+    const keys=cloudinaryStateKeys();
+    let changed=false;
+    for(const key of keys){
+      const remote=await loadFromCloudinary(key);
+      if(remote!==null){
+        const local=localStorage.getItem(key);
+        if(JSON.stringify(remote)!==local){
+          localWrite(key,remote);
+          changed=true;
+        }
+      }
+    }
+    if(changed||forceRender){
+      SETTINGS=await loadKey(KEYS.settings,DEFAULT_SETTINGS);
+      SETTINGS=Object.assign({},DEFAULT_SETTINGS,SETTINGS,{
+        hero:Object.assign({},DEFAULT_SETTINGS.hero,SETTINGS.hero||{}),
+        footer:Object.assign({},DEFAULT_SETTINGS.footer,SETTINGS.footer||{}, {
+          social:Object.assign({},DEFAULT_SETTINGS.footer.social,(SETTINGS.footer&&SETTINGS.footer.social)||{})
+        }),
+        search:Object.assign({},DEFAULT_SETTINGS.search,SETTINGS.search||{}),
+        mediaSizing:Object.assign({},DEFAULT_SETTINGS.mediaSizing,SETTINGS.mediaSizing||{})
+      });
+      PRODUCTS=await loadKey(KEYS.products,[]);
+      CATEGORIES=await loadKey(KEYS.categories,seedCategories());
+      FLASHSALES=await loadKey(KEYS.flashsales,[]);
+      BANNERS=await loadKey(KEYS.banners,[]);
+      MEDIA=await loadKey(KEYS.media,[]);
+      PAGES=await loadKey(KEYS.pages,seedPages());
+      applyTheme();
+      render();
+    }
+  }finally{ CLOUDINARY_SYNC_BUSY=false; }
+}
+
+async function syncFromCloudinary(forceRender=false){ return refreshStateFromCloudinary(forceRender); }
+
+function startCloudinarySync(){
+  if(CLOUDINARY_SYNC_TIMER)clearInterval(CLOUDINARY_SYNC_TIMER);
+  CLOUDINARY_SYNC_TIMER=setInterval(()=>refreshStateFromCloudinary(false),CLOUDINARY_SYNC_INTERVAL);
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='visible')refreshStateFromCloudinary(false);
+  });
+  window.addEventListener('focus',()=>refreshStateFromCloudinary(false));
+}
+
+function cloudinaryOptimizedUrl(url, width){
+  if(!url || typeof url!=='string') return url||'';
+  if(!url.includes('res.cloudinary.com/')) return url;
+  const marker='/image/upload/';
+  if(!url.includes(marker)) return url;
+  if(url.includes('/f_auto,') || url.includes('/q_auto')) return url;
+  const transform=width ? `f_auto,q_auto:good,dpr_auto,w_${Math.round(width)},c_limit` : CLOUDINARY_TRANSFORM;
+  return url.replace(marker, `${marker}${transform}/`);
+}
+
+function isCloudinaryUrl(url){
+  return typeof url==='string' && url.includes('res.cloudinary.com/'+CLOUDINARY_CLOUD_NAME+'/');
+}
+async function cloudinaryUploadFile(file){
+  const fd=new FormData();
+  fd.append('file',file);
+  fd.append('upload_preset',CLOUDINARY_UPLOAD_PRESET);
+  const res=await fetch(CLOUDINARY_IMAGE_UPLOAD_URL,{method:'POST',body:fd});
+  let data={}; try{data=await res.json();}catch(_){ }
+  if(!res.ok || !data.secure_url) throw new Error(data?.error?.message || ('Cloudinary HTTP '+res.status));
+  return cloudinaryOptimizedUrl(data.secure_url);
+}
+async function uploadImageUrlToCloudinary(rawUrl, label='Image'){
   const url=(rawUrl||'').trim();
   if(!url) throw new Error('Please enter an image URL');
   if(!isValidHttpUrl(url)) throw new Error('Please enter a valid http(s) image URL');
-  return url;
+  if(isCloudinaryUrl(url)) return cloudinaryOptimizedUrl(url);
+  // First let Cloudinary fetch the public URL directly (works with IMGBB and other public image URLs).
+  try{ return await cloudinaryUploadFile(url); }
+  catch(e){ console.warn('Cloudinary remote URL upload failed:',e); }
+  // Browser/CORS fallback: download the image and send the Blob to Cloudinary.
+  try{
+    const sourceRes=await fetch(url,{mode:'cors',cache:'no-store'});
+    if(!sourceRes.ok) throw new Error('Source image HTTP '+sourceRes.status);
+    const blob=await sourceRes.blob();
+    if(!blob.type || !blob.type.startsWith('image/')) throw new Error('The URL did not return an image');
+    return await cloudinaryUploadFile(blob);
+  }catch(e){
+    // Important: never break the storefront just because Cloudinary cannot import an external URL.
+    // Keep the original public URL so the storefront can still use it if Cloudinary cannot import it.
+    console.warn(label+' kept as original public URL:',e);
+    return url;
+  }
 }
-async function handleLocalImageFileInput(input,callback){
+
+async function rememberMediaUrl(url){
+  if(!url)return;
+  if(!MEDIA.some(m=>m.dataUrl===url || m.name===url)){
+    MEDIA.push({id:uid(),name:url,dataUrl:url});
+    saveKey(KEYS.media,MEDIA);
+  }
+}
+async function handleCloudinaryFileInput(input,callback){
   const file=input.files&&input.files[0]; if(!file)return;
   input.disabled=true;
-  try{const stored=await fileToDataUrl(file); callback(stored); toast('Image added to this offline store.');}
-  catch(e){toast('Image upload failed: '+e.message);}
+  try{const stored=await cloudinaryUploadFile(file);await rememberMediaUrl(stored);callback(stored);toast('File uploaded to Cloudinary, saved to Media Library and optimized.');}
+  catch(e){toast('Cloudinary upload failed: '+e.message);}
   finally{input.disabled=false;}
 }
-async function handleImageUrlInput(input,callback){
-  const url=(input.value||'').trim(); if(!url)return;
-  if(!isValidHttpUrl(url)){toast('Please enter a valid http(s) image URL');return;}
-  callback(url); toast('Image URL saved locally.');
+async function handleImageUrlInput(input, callback){
+  const url=(input.value||'').trim(); if(!url) return;
+  const old=input.value; input.disabled=true; input.dataset.originalPlaceholder=input.placeholder; input.placeholder='Connecting image...';
+  try{
+    const stored=await uploadImageUrlToCloudinary(url);
+    await rememberMediaUrl(stored);
+    callback(stored);
+    toast(isCloudinaryUrl(stored)?'Image uploaded to Cloudinary, saved to Media Library and applied.':'Image URL saved and added to Media Library.');
+  }catch(e){ toast('Image upload failed: '+e.message); input.value=old; }
+  finally{ input.disabled=false; input.placeholder=input.dataset.originalPlaceholder||'Image URL'; }
 }
+
 async function processImageField(input,getTarget,prop,previewId){
-  const url=(input.value||'').trim(); if(!url)return;
-  if(!isValidHttpUrl(url)){toast('Please enter a valid http(s) image URL');return;}
-  const target=getTarget(); if(!target)return;
-  target[prop]=url;
-  const prev=document.getElementById(previewId); if(prev){prev.src=url;prev.style.display='block';}
+  const url=(input.value||'').trim(); if(!url) return;
+  const old=url; input.disabled=true; input.dataset.originalPlaceholder=input.placeholder; input.placeholder='Connecting image...';
+  try{
+    const storedUrl=await uploadImageUrlToCloudinary(url,prop);
+    const target=getTarget(); if(!target) throw new Error('Image target is no longer available');
+    target[prop]=storedUrl;
+    const prev=document.getElementById(previewId); if(prev){prev.src=storedUrl;prev.style.display='block';}
+    toast(isCloudinaryUrl(storedUrl)?'Image uploaded to Cloudinary and saved.':'Image URL saved.');
+  }catch(e){input.value=old;toast('Image upload failed: '+e.message);}
+  finally{input.disabled=false;input.placeholder=input.dataset.originalPlaceholder||'Image URL';}
 }
 
 async function boot(){
-  const embedded=window.__STOREX_EMBEDDED_STATE__;
-  if(embedded){
-    localWrite(KEYS.settings,embedded.settings);localWrite(KEYS.products,embedded.products);localWrite(KEYS.categories,embedded.categories);localWrite(KEYS.flashsales,embedded.flashsales);localWrite(KEYS.banners,embedded.banners);localWrite(KEYS.media,embedded.media);localWrite(KEYS.pages,embedded.pages);
-  }
-    SETTINGS = await loadKey(KEYS.settings, DEFAULT_SETTINGS);
+  
+  SETTINGS = await loadKey(KEYS.settings, DEFAULT_SETTINGS);
   SETTINGS = Object.assign({}, DEFAULT_SETTINGS, SETTINGS, {
     hero:Object.assign({},DEFAULT_SETTINGS.hero,SETTINGS.hero||{}),
     footer:Object.assign({},DEFAULT_SETTINGS.footer,SETTINGS.footer||{},{social:Object.assign({},DEFAULT_SETTINGS.footer.social,(SETTINGS.footer&&SETTINGS.footer.social)||{})}),
@@ -395,6 +676,8 @@ async function boot(){
   window.addEventListener('hashchange', render);
   render();
   applyMediaSizing();
+  startCloudinarySync();
+  setTimeout(()=>syncFromCloudinary(false),350);
 }
 
 function seedCategories(){ return []; }
@@ -439,7 +722,7 @@ function injectGA(){
   document.head.appendChild(s1); document.head.appendChild(s2);
 }
 
-function mediaSrc(id){ if(!id) return ''; const m=MEDIA.find(x=>x.id===id); return m?m.dataUrl:(typeof id==='string'&&(id.startsWith('data:')||id.startsWith('http'))?id:''); }
+function mediaSrc(id){ if(!id) return ''; const m=MEDIA.find(x=>x.id===id); const src=m?m.dataUrl:(typeof id==='string'&&(id.startsWith('data:')||id.startsWith('http'))?id:''); return cloudinaryOptimizedUrl(src); }
 
 /* ---------- SEO (hidden meta tags, invisible to shoppers) ---------- */
 function setMetaTag(name, content){
@@ -454,6 +737,10 @@ function applySEO(seo, fallbackTitle, fallbackDesc){
   setMetaTag('keywords', (seo&&seo.keywords) || '');
 }
 function resetDefaultSEO(){ applySEO(null, ''); }
+
+function cloudinaryStatusMessage(ok){
+  return ok ? 'Cloudinary: synced' : 'Cloudinary: sync failed';
+}
 
 function toast(msg){
   const el=document.createElement('div'); el.className='toast'; el.textContent=msg;
@@ -513,13 +800,23 @@ function getSearchCorpus(){
   CATEGORIES.forEach(c=>{if(c.status!=='hidden')out.push(c.name);});
   return [...new Set(out.filter(Boolean))];
 }
-const BUILTIN_SEARCH_SUGGESTIONS = ['phone','smartphone','laptop','headphones','earbuds','smart watch','watch','shoes','sneakers','fashion','men fashion','women fashion','beauty','skincare','makeup','home','kitchen','electronics','gaming','accessories','bags','wallet','perfume','new arrivals','best sellers','flash sale','discount','deals'];
+const BUILTIN_LETTER_SUGGESTIONS={
+ a:['airpods','android phone','abaya','analog watch'],b:['bluetooth speaker','backpack','beauty','bedsheet'],c:['charger','camera','casual shoes','cosmetics'],d:['dress','decor','desk lamp','duffle bag'],e:['earbuds','electric kettle','eyewear','electronics'],f:['fashion','fan','fitness','flash sale'],g:['gaming','gift','gloves','gadget'],h:['headphones','hoodie','handbag','home decor'],i:['iphone','iron','induction cooker','innerwear'],j:['jewelry','jeans','jacket','joggers'],k:['kitchen','kurta','kids','keyboard'],l:['laptop','led lights','lawn','lipstick'],m:['mobile','makeup','men shoes','mouse'],n:['necklace','night suit','notebook','new arrivals'],o:['office chair','oppo','organizer','outdoor'],p:['phone','power bank','perfume','purse'],q:['quilt','queen bedsheet','quick charger'],r:['ramadan','router','running shoes','ring'],s:['smartwatch','shoes','skincare','speaker'],t:['t-shirt','trending','tablet','travel bag'],u:['usb cable','under 1000','utensils','utility'],v:['vivo','vacuum cleaner','wallet','winter wear'],w:['watch','wireless earbuds','women fashion','wallet'],x:['xiaomi','xbox','xtra deals'],y:['yoga','youth fashion','yellow dress'],z:['zara style','zipper bag','zainab market']
+};
 function searchSuggestions(q){
   const query=(q||'').trim().toLowerCase();
-  const corpus=[...getSearchCorpus(),...BUILTIN_SEARCH_SUGGESTIONS,...trendingSearches()];
-  if(!query) return [...new Set(corpus)].slice(0,Number(SETTINGS.search?.maxSuggestions)||8);
+  if(!query){return [];}
   const words=query.split(/\s+/).filter(Boolean);
-  return [...new Set(corpus)].map(v=>({v,score:words.reduce((n,w)=>{const x=v.toLowerCase();return n+(x.startsWith(w)?5:x.includes(w)?2:0)},0)})).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.v.length-b.v.length).slice(0,Number(SETTINGS.search?.maxSuggestions)||8).map(x=>x.v);
+  const configured=SETTINGS.search?.letterSuggestions||{};
+  const custom=Object.values(configured).flat();
+  const corpus=[...getSearchCorpus(),...custom,...Object.values(BUILTIN_LETTER_SUGGESTIONS).flat()];
+  return [...new Set(corpus.filter(Boolean))].map(v=>({v,score:words.reduce((n,w)=>{const x=v.toLowerCase();return n+(x.startsWith(w)?4:(x.includes(w)?2:0));},0)}))
+    .filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.v.length-b.v.length)
+    .slice(0,Number(SETTINGS.search?.maxSuggestions)||10).map(x=>x.v);
+}
+function letterSuggestions(){
+  const custom=SETTINGS.search?.letterSuggestions||{};
+  return Object.fromEntries(Object.keys(BUILTIN_LETTER_SUGGESTIONS).map(k=>[k,[...(custom[k]||[]),...BUILTIN_LETTER_SUGGESTIONS[k]]].filter(Boolean).slice(0,12)));
 }
 function trendingSearches(){return (SETTINGS.search?.trending||DEFAULT_SETTINGS.search.trending||[]).filter(Boolean).slice(0,12);}
 function openSearchSuggestions(input){
@@ -755,7 +1052,7 @@ function renderCategoriesSection(sec){
   }
   const cats = CATEGORIES.filter(c=>c.status!=='hidden').sort((a,b)=>(a.order||0)-(b.order||0)).map(c=>`
     <a class="cat-card" href="#/category/${esc(c.slug)}">
-      <div class="cat-icon" style="${(c.display&&c.display.width)?`width:${Number(c.display.width)}px;`:''}${(c.display&&c.display.height)?`height:${Number(c.display.height)}px;`:''}">${c.image? `<img src="${mediaSrc(c.image)}" alt="">` : (c.icon||'\u{1F6CD}')}</div>
+      <div class="cat-icon">${c.image? `<img src="${mediaSrc(c.image)}" alt="">` : (c.icon||'\u{1F6CD}')}</div>
       <div class="cat-name">${esc(c.name)}</div>
     </a>`).join('');
   return `<section class="section container"><div class="section-head"><div><h2>${esc(sec.title||'Shop by Category')}</h2><p>${esc(sec.subtitle||'')}</p></div></div>
@@ -846,11 +1143,9 @@ function renderBannerSection(sec){
 /* ================= PRODUCT CARD ================= */
 function renderProductCard(p){
   const img = p.mainImage ? mediaSrc(p.mainImage) : (p.images&&p.images[0]?mediaSrc(p.images[0]):'');
-  const ds=p.display||{}; const mediaStyle=`${ds.width?`width:${Number(ds.width)}px;`:''}${ds.height?`height:${Number(ds.height)}px;`:''}`;
-  return `<div class="card" style="${ds.cardWidth?`width:${Number(ds.cardWidth)}px;`:''}">
-
+  return `<div class="card">
     ${p.badge?`<span class="card-badge">${esc(p.badge)}</span>`:''}
-    <a href="#/product/${esc(p.seo&&p.seo.slug||p.id)}" class="card-img" style="${mediaStyle}">${img?`<img src="${img}" alt="${esc(p.title)}">`:''}</a>
+    <a href="#/product/${esc(p.seo&&p.seo.slug||p.id)}" class="card-img">${img?`<img src="${img}" alt="${esc(p.title)}">`:''}</a>
     <div class="card-body">
       <a href="#/product/${esc(p.seo&&p.seo.slug||p.id)}" class="card-title">${esc(p.shortTitle||p.title)}</a>
       ${p.shortDesc?`<div class="card-desc">${esc(p.shortDesc)}</div>`:''}
@@ -1089,6 +1384,11 @@ function renderAdminView(){
 }
 
 /* ---------- Dashboard ---------- */
+function cloudinarySyncStatus(){
+  const age=CLOUDINARY_LAST_SYNC ? Math.max(0,Math.round((Date.now()-CLOUDINARY_LAST_SYNC)/1000)) : null;
+  return age===null ? 'Cloudinary sync: waiting' : `Cloudinary sync: ${age}s ago`;
+}
+
 function adminDashboard(){
   const published = PRODUCTS.filter(p=>p.status==='published').length;
   const hidden = PRODUCTS.filter(p=>p.status==='hidden').length;
@@ -1119,6 +1419,33 @@ function adminDashboard(){
     ${topClicks.length? `<table class="admin-table"><thead><tr><th>Product</th><th>Clicks</th><th>Views</th></tr></thead><tbody>
       ${topClicks.map(p=>`<tr><td>${esc(p.title)}</td><td>${p.clicks||0}</td><td>${p.views||0}</td></tr>`).join('')}
     </tbody></table>` : '<p style="color:var(--ink-soft);font-size:13.5px;">No data yet.</p>'}
+  </div>`;
+}
+
+/* ---------- Reusable admin image picker ---------- */
+let MEDIA_PICKER_CALLBACK=null;
+function openMediaPicker(callback){
+  MEDIA_PICKER_CALLBACK=callback;
+  showModal(`<h2>Select image from Media Library</h2>
+    <p style="font-size:12.5px;color:var(--ink-soft);">Choose an existing Cloudinary image. The selected image is immediately applied to the current field.</p>
+    ${MEDIA.length?`<div class="thumb-picker" style="gap:12px;">${MEDIA.map(m=>`<button type="button" class="t" style="width:90px;height:90px;padding:0;background:#fff;" onclick="selectMediaForField('${m.id}')"><img src="${mediaSrc(m.id)}" alt=""></button>`).join('')}</div>`:'<div class="empty-state"><div class="icon">🖼️</div><h3>No media yet</h3><p>Upload an image in Media Library first.</p></div>'}
+    <div class="modal-close-row"><button type="button" class="btn ghost" onclick="closeModal();MEDIA_PICKER_CALLBACK=null;">Cancel</button></div>`);
+}
+function selectMediaForField(id){
+  const url=mediaSrc(id);
+  const cb=MEDIA_PICKER_CALLBACK; MEDIA_PICKER_CALLBACK=null; closeModal();
+  if(typeof cb==='function')cb(url);
+}
+function adminImageControls(label,current,onSelectJs,previewId,extraNote=''){
+  const safePreview=previewId||('img-prev-'+uid());
+  return `<div class="upload-box">
+    <input type="url" value="${esc(current||'')}" placeholder="Paste image URL..." onchange="if(this.value){const input=this;handleImageUrlInput(input,url=>{${onSelectJs};const p=document.getElementById('${safePreview}');if(p){p.src=url;p.style.display=url?'block':'none';}});}">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+      <label class="btn small" style="display:inline-flex;align-items:center;">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{${onSelectJs};const p=document.getElementById('${safePreview}');if(p){p.src=url;p.style.display='block';}})"></label>
+      <button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{${onSelectJs};const p=document.getElementById('${safePreview}');if(p){p.src=url;p.style.display='block';}})">Choose from Media Library</button>
+    </div>
+    <img id="${safePreview}" src="${current?mediaSrc(current):''}" style="max-width:180px;max-height:90px;object-fit:contain;border-radius:6px;margin-top:8px;${current?'':'display:none;'}">
+    ${extraNote?`<div class="upload-note">${extraNote}</div>`:''}
   </div>`;
 }
 
@@ -1161,7 +1488,7 @@ function deleteProduct(id){
 }
 
 function openProductModal(id){
-  const p = id ? PRODUCTS.find(x=>x.id===id) : {id:uid(),title:'',shortTitle:'',shortDesc:'',fullDesc:'',images:[],mainImage:null,darazUrl:'',category:'',tags:[],price:'',oldPrice:'',discount:'',badge:'',sku:'',status:'published',featured:false,trending:false,newArrival:false,bestSeller:false,order:PRODUCTS.length,seo:{slug:'',title:'',description:'',keywords:''},clicks:0,views:0,display:{mediaWidth:'',mediaHeight:'',cardWidth:''}};
+  const p = id ? PRODUCTS.find(x=>x.id===id) : {id:uid(),title:'',shortTitle:'',shortDesc:'',fullDesc:'',images:[],mainImage:null,darazUrl:'',category:'',tags:[],price:'',oldPrice:'',discount:'',badge:'',sku:'',status:'published',featured:false,trending:false,newArrival:false,bestSeller:false,order:PRODUCTS.length,seo:{slug:'',title:'',description:'',keywords:''},clicks:0,views:0};
   p.seo = p.seo || {slug:'',title:'',description:'',keywords:''};
   const isNew = !id;
   const catOptions = CATEGORIES.map(c=>`<option value="${c.id}" ${p.category===c.id?'selected':''}>${esc(c.name)}</option>`).join('');
@@ -1183,9 +1510,6 @@ function openProductModal(id){
         <div class="field full"><label>Daraz product URL *</label><input required type="url" name="darazUrl" placeholder="https://www.daraz.pk/products/..." value="${esc(p.darazUrl)}"></div>
         <div class="field"><label>Status</label><select name="status"><option value="published" ${p.status==='published'?'selected':''}>Published</option><option value="hidden" ${p.status==='hidden'?'selected':''}>Hidden</option></select></div>
         <div class="field"><label>Display order</label><input type="number" name="order" value="${esc(p.order)}"></div>
-        <div class="field"><label>Image width (px)</label><input type="number" name="mediaWidth" value="${esc((p.display||{}).mediaWidth||'')}"></div>
-        <div class="field"><label>Image height (px)</label><input type="number" name="mediaHeight" value="${esc((p.display||{}).mediaHeight||'')}"></div>
-        <div class="field"><label>Card width (px, optional)</label><input type="number" name="cardWidth" value="${esc((p.display||{}).cardWidth||'')}"></div>
         <div class="field full">
           <label>Flags</label>
           <div style="display:flex;gap:16px;flex-wrap:wrap;">
@@ -1199,8 +1523,8 @@ function openProductModal(id){
           <label>Product images (from your device)</label>
           <div class="upload-box">
             <input type="url" placeholder="Image URL yahan enter karein (https://...)" onchange="if(this.value){ handleImageUrlInput(this, url=>{ addProductImage('${p.id}', url, ${isNew}); this.value=''; }); }">
-            <input type="file" accept="image/*" multiple onchange="const fs=[...this.files];Promise.all(fs.map(fileToDataUrl)).then(urls=>{urls.forEach(url=>addProductImage('${p.id}',addMediaDataUrl(url,'product'),${isNew}));saveKey(KEYS.products,PRODUCTS);})">
-            <button type="button" class="btn small ghost" style="margin-top:6px;" onclick="openMediaPicker((id)=>{addProductImage('${p.id}',id,${isNew});saveKey(KEYS.products,PRODUCTS);})">Choose from Media Library</button>
+            <label class="btn small" style="display:inline-flex;margin-top:8px;">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>addProductImage('${p.id}',url,${isNew}))"></label>
+            <button type="button" class="btn small ghost" style="margin-top:8px;" onclick="openMediaPicker(url=>addProductImage('${p.id}',url,${isNew}))">Choose from Media Library</button>
             <div id="product-img-list-${p.id}" class="thumb-picker" style="margin-top:10px;">
               ${(p.images||[]).map(im=>`<div class="t ${p.mainImage===im?'sel':''}" onclick="setMainProductImage('${p.id}','${im}',${isNew})"><img src="${mediaSrc(im)}"></div>`).join('')}
             </div>
@@ -1259,8 +1583,7 @@ function saveProductForm(pid, isNew){
     discount: fd.get('discount')?Number(fd.get('discount')):'', badge: fd.get('badge').trim(),
     darazUrl, status: fd.get('status'), order: Number(fd.get('order'))||0,
     featured: fd.get('featured')==='on', trending: fd.get('trending')==='on', newArrival: fd.get('newArrival')==='on', bestSeller: fd.get('bestSeller')==='on',
-    seo: { slug: slugify(fd.get('seoSlug').trim() || title), title: fd.get('seoTitle').trim(), keywords: fd.get('seoKeywords').trim(), description: fd.get('seoDescription').trim() },
-    display:{mediaWidth:fd.get('mediaWidth')||'',mediaHeight:fd.get('mediaHeight')||'',cardWidth:fd.get('cardWidth')||''}
+    seo: { slug: slugify(fd.get('seoSlug').trim() || title), title: fd.get('seoTitle').trim(), keywords: fd.get('seoKeywords').trim(), description: fd.get('seoDescription').trim() }
   });
   if(isNew){ PRODUCTS.push(draft); window.__draftProduct=null; }
   saveKey(KEYS.products, PRODUCTS);
@@ -1287,7 +1610,7 @@ function adminCategories(){
 function deleteCategory(id){ if(!confirm('Delete this category?')) return; CATEGORIES=CATEGORIES.filter(c=>c.id!==id); saveKey(KEYS.categories,CATEGORIES); toast('Category deleted'); }
 
 function openCategoryModal(id){
-  const c = id ? CATEGORIES.find(x=>x.id===id) : {id:uid(),name:'',slug:'',description:'',image:null,icon:'',order:CATEGORIES.length,status:'visible',seo:{title:'',description:'',keywords:''},display:{width:'',height:''}};
+  const c = id ? CATEGORIES.find(x=>x.id===id) : {id:uid(),name:'',slug:'',description:'',image:null,icon:'',order:CATEGORIES.length,status:'visible',seo:{title:'',description:'',keywords:''}};
   c.seo = c.seo || {title:'',description:'',keywords:''};
   const isNew = !id;
   if(isNew) window.__draftCategory = c;
@@ -1300,15 +1623,13 @@ function openCategoryModal(id){
         <div class="field full"><label>Description</label><textarea name="description">${esc(c.description)}</textarea></div>
         <div class="field"><label>Icon (emoji, optional)</label><input type="text" name="icon" value="${esc(c.icon)}" placeholder="e.g. \u{1F4F1}"></div>
         <div class="field"><label>Display order</label><input type="number" name="order" value="${esc(c.order)}"></div>
-        <div class="field"><label>Image width (px)</label><input type="number" name="mediaWidth" value="${esc((c.display||{}).width||'')}"></div>
-        <div class="field"><label>Image height (px)</label><input type="number" name="mediaHeight" value="${esc((c.display||{}).height||'')}"></div>
         <div class="field"><label>Status</label><select name="status"><option value="visible" ${c.status!=='hidden'?'selected':''}>Visible</option><option value="hidden" ${c.status==='hidden'?'selected':''}>Hidden</option></select></div>
         <div class="field full">
           <label>Category image</label>
           <div class="upload-box">
             <input type="url" placeholder="Category Image URL yahan enter karein" onchange="if(this.value){ const input=this; handleImageUrlInput(input,url=>{ (${isNew}?window.__draftCategory:CATEGORIES.find(x=>x.id==='${c.id}')).image=url; const prev=document.getElementById('cat-img-prev-${c.id}'); if(prev){prev.src=url; prev.style.display='block';} }); }">
-            <input type="file" accept="image/*" onchange="handleLocalImageFileInput(this,url=>{(${isNew}?window.__draftCategory:CATEGORIES.find(x=>x.id==='${c.id}')).image=addMediaDataUrl(url,'category');const prev=document.getElementById('cat-img-prev-${c.id}');if(prev){prev.src=url;prev.style.display='block';}})">
-            <button type="button" class="btn small ghost" style="margin-top:6px;" onclick="openMediaPicker((id)=>{(${isNew}?window.__draftCategory:CATEGORIES.find(x=>x.id==='${c.id}')).image=id;saveKey(KEYS.categories,CATEGORIES);})">Choose from Media Library</button>
+            <label class="btn small" style="display:inline-flex;margin-top:8px;">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{(${isNew}?window.__draftCategory:CATEGORIES.find(x=>x.id==='${c.id}')).image=url;document.getElementById('cat-img-prev-${c.id}').src=url;document.getElementById('cat-img-prev-${c.id}').style.display='block';})"></label>
+            <button type="button" class="btn small ghost" style="margin-top:8px;" onclick="openMediaPicker(url=>{(${isNew}?window.__draftCategory:CATEGORIES.find(x=>x.id==='${c.id}')).image=url;document.getElementById('cat-img-prev-${c.id}').src=url;document.getElementById('cat-img-prev-${c.id}').style.display='block';})">Choose from Media Library</button>
             <img id="cat-img-prev-${c.id}" src="${c.image?mediaSrc(c.image):''}" style="width:60px;height:60px;object-fit:cover;border-radius:6px;margin-top:8px;${c.image?'':'display:none;'}">
             <div class="upload-note">For a perfect fit in the box-style category grid, upload a square image \u2014 recommended 800 x 800px.</div>
           </div>
@@ -1332,7 +1653,7 @@ function saveCategoryForm(id, isNew){
   const name = fd.get('name').trim();
   Object.assign(draft, {
     name, slug: slugify(fd.get('slug').trim() || name), description: fd.get('description').trim(),
-    icon: fd.get('icon').trim(), order: Number(fd.get('order'))||0, status: fd.get('status'), display:{width:fd.get('mediaWidth')||'',height:fd.get('mediaHeight')||''},
+    icon: fd.get('icon').trim(), order: Number(fd.get('order'))||0, status: fd.get('status'),
     seo: { title: fd.get('seoTitle').trim(), keywords: fd.get('seoKeywords').trim(), description: fd.get('seoDescription').trim() }
   });
   if(isNew){ CATEGORIES.push(draft); window.__draftCategory=null; }
@@ -1377,14 +1698,20 @@ function openFlashSaleModal(id){
           <div class="upload-box">
             <label style="display:block;font-size:11.5px;font-weight:700;margin-bottom:4px;">Image 1 (required)</label>
             <input type="url" placeholder="Flash Sale Image URL 1 (required)" value="${esc(f.banner||'')}" onchange="const url=this.value.trim(); const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}')); d.banner=url||null; const prev=document.getElementById('flash-banner-prev-1'); if(prev){ if(url){prev.src=url; prev.style.display='block';} else {prev.style.display='none';} }">
+            <label class="btn small" style="display:inline-flex;margin-top:8px;">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}'));d.banner=url;const prev=document.getElementById('flash-banner-prev-1');if(prev){prev.src=url;prev.style.display='block';}})"></label>
+            <button type="button" class="btn small ghost" style="margin-top:8px;" onclick="openMediaPicker(url=>{const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}'));d.banner=url;const prev=document.getElementById('flash-banner-prev-1');if(prev){prev.src=url;prev.style.display='block';}})">Choose from Media Library</button>
             <img id="flash-banner-prev-1" src="${f.banner?mediaSrc(f.banner):''}" style="width:110px;height:65px;object-fit:cover;border-radius:6px;margin-top:8px;${f.banner?'':'display:none;'}">
 
             <label style="display:block;font-size:11.5px;font-weight:700;margin:14px 0 4px;">Image 2 (optional)</label>
             <input type="url" placeholder="Flash Sale Image URL 2 (optional)" value="${esc(f.banner2||'')}" onchange="const url=this.value.trim(); const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}')); d.banner2=url||null; const prev=document.getElementById('flash-banner-prev-2'); if(prev){ if(url){prev.src=url; prev.style.display='block';} else {prev.style.display='none';} }">
+            <label class="btn small" style="display:inline-flex;margin-top:8px;">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}'));d.banner2=url;const prev=document.getElementById('flash-banner-prev-2');if(prev){prev.src=url;prev.style.display='block';}})"></label>
+            <button type="button" class="btn small ghost" style="margin-top:8px;" onclick="openMediaPicker(url=>{const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}'));d.banner2=url;const prev=document.getElementById('flash-banner-prev-2');if(prev){prev.src=url;prev.style.display='block';}})">Choose from Media Library</button>
             <img id="flash-banner-prev-2" src="${f.banner2?mediaSrc(f.banner2):''}" style="width:110px;height:65px;object-fit:cover;border-radius:6px;margin-top:8px;${f.banner2?'':'display:none;'}">
 
             <label style="display:block;font-size:11.5px;font-weight:700;margin:14px 0 4px;">Image 3 (optional)</label>
             <input type="url" placeholder="Flash Sale Image URL 3 (optional)" value="${esc(f.banner3||'')}" onchange="const url=this.value.trim(); const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}')); d.banner3=url||null; const prev=document.getElementById('flash-banner-prev-3'); if(prev){ if(url){prev.src=url; prev.style.display='block';} else {prev.style.display='none';} }">
+            <label class="btn small" style="display:inline-flex;margin-top:8px;">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}'));d.banner3=url;const prev=document.getElementById('flash-banner-prev-3');if(prev){prev.src=url;prev.style.display='block';}})"></label>
+            <button type="button" class="btn small ghost" style="margin-top:8px;" onclick="openMediaPicker(url=>{const d=(${isNew}?window.__draftFlash:FLASHSALES.find(x=>x.id==='${f.id}'));d.banner3=url;const prev=document.getElementById('flash-banner-prev-3');if(prev){prev.src=url;prev.style.display='block';}})">Choose from Media Library</button>
             <img id="flash-banner-prev-3" src="${f.banner3?mediaSrc(f.banner3):''}" style="width:110px;height:65px;object-fit:cover;border-radius:6px;margin-top:8px;${f.banner3?'':'display:none;'}">
 
             <div class="upload-note">Recommended size: 1200 x 600px. Image 1 is required; Images 2 &amp; 3 are optional. If 2 or more images are added, they automatically rotate every 3 seconds on the storefront.</div>
@@ -1493,11 +1820,13 @@ function openBannerModal(id){
         <div class="field"><label>Button URL / Link</label><input type="text" name="buttonUrl" value="${esc(b.buttonUrl)}" placeholder="#/category/all or https://..."></div>
         <div class="field"><label>Visible</label><select name="visible"><option value="yes" ${b.visible?'selected':''}>Yes</option><option value="no" ${!b.visible?'selected':''}>No</option></select></div>
         <div class="field full"><label class="checkline"><input type="checkbox" name="heroSlider" ${b.heroSlider?'checked':''}> Include in Hero slider</label></div>
-        <div class="field full"><label>Fallback image URL</label><input type="url" name="image" value="${esc(b.image||'')}" placeholder="https://..." ></div>
-        <div class="field full"><label>Upload image directly to local image storage</label><input type="file" accept="image/*" onchange="handleLocalImageFileInput(this,url=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.image=url;})">
-        <button type="button" class="btn small ghost" style="margin-top:6px;" onclick="openMediaPicker((id)=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.image=id;})">Choose from Media Library</button></div>
+        <div class="field full"><label>Fallback image URL</label><input type="url" name="image" value="${esc(b.image||'')}" placeholder="https://..." >
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;"><label class="btn small">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.image=url;})"></label><button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.image=url;})">Choose from Media Library</button></div></div>
+        <div class="field full"><label>Upload image directly to Cloudinary</label><input type="file" accept="image/*" onchange="handleCloudinaryFileInput(this,url=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.image=url;})"></div>
         <div class="field"><label>Desktop image URL</label><input type="url" name="desktopImage" value="${esc(b.desktopImage||'')}" placeholder="Optional"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:-8px;margin-bottom:8px;"><label class="btn small">Upload desktop<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.desktopImage=url;})"></label><button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.desktopImage=url;})">Choose from Media</button></div>
         <div class="field"><label>Mobile image URL</label><input type="url" name="mobileImage" value="${esc(b.mobileImage||'')}" placeholder="Optional"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:-8px;margin-bottom:8px;"><label class="btn small">Upload mobile<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.mobileImage=url;})"></label><button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{const d=${isNew?'window.__draftBanner':`BANNERS.find(x=>x.id==='${b.id}')`};d.mobileImage=url;})">Choose from Media</button></div>
       </div>
       <fieldset class="seo-fieldset"><legend>Banner Design — Full Control</legend>
         <div class="form-grid">
@@ -1687,10 +2016,11 @@ function adminTheme(){
   return `<div class="admin-topbar"><h1>Theme &amp; Branding</h1></div>
   <div class="admin-card">
     <h3 style="margin-top:0;">Favicon / Browser &amp; Google Search Icon</h3>
-    <div class="help-note">Upload a square PNG/JPG/ICO/WebP icon. It is stored on local image storage and applied as the site's favicon. Google can display it after the deployed site is crawled; this HTML file alone cannot force Google indexing.</div>
+    <div class="help-note">Upload a square PNG/JPG/ICO/WebP icon. It is stored on Cloudinary and applied as the site's favicon. Google can display it after the deployed site is crawled; this HTML file alone cannot force Google indexing.</div>
     <div class="upload-box">
-      <input type="file" accept="image/png,image/jpeg,image/webp,image/x-icon" onchange="handleLocalImageFileInput(this,url=>{SETTINGS.favicon=url;saveKey(KEYS.settings,SETTINGS);})">
+      <input type="file" accept="image/png,image/jpeg,image/webp,image/x-icon" onchange="handleCloudinaryFileInput(this,url=>{SETTINGS.favicon=url;saveKey(KEYS.settings,SETTINGS);})">
       <input type="url" style="margin-top:8px;width:100%;" placeholder="Or paste favicon URL" value="${esc(SETTINGS.favicon||'')}" onchange="if(this.value){const input=this;handleImageUrlInput(input,url=>{SETTINGS.favicon=url;saveKey(KEYS.settings,SETTINGS);});}">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;"><button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{SETTINGS.favicon=url;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button></div>
       ${SETTINGS.favicon?`<img src="${mediaSrc(SETTINGS.favicon)}" style="width:64px;height:64px;object-fit:contain;margin:10px auto 0;border:1px solid var(--line);border-radius:8px;">`:''}
       ${SETTINGS.favicon?`<button type="button" class="btn small danger" style="margin-top:8px;" onclick="SETTINGS.favicon=null;saveKey(KEYS.settings,SETTINGS);">Remove Favicon</button>`:''}
     </div>
@@ -1712,8 +2042,7 @@ function adminTheme(){
     <h3 style="margin-top:0;">Logo Settings</h3>
     <div class="upload-box">
       <input type="url" placeholder="Logo Image URL yahan enter karein (https://...)" value="${esc(SETTINGS.logo||'')}" onchange="if(this.value){ const input=this; handleImageUrlInput(input,url=>{ SETTINGS.logo=url||null; saveKey(KEYS.settings,SETTINGS); }); }">
-      <input type="file" accept="image/*" onchange="handleLocalImageFileInput(this,url=>{SETTINGS.logo=addMediaDataUrl(url,'logo');saveKey(KEYS.settings,SETTINGS);})">
-      <button type="button" class="btn small ghost" style="margin-top:6px;" onclick="openMediaPicker((id)=>{SETTINGS.logo=id;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;"><label class="btn small">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{SETTINGS.logo=url;saveKey(KEYS.settings,SETTINGS);})"></label><button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{SETTINGS.logo=url;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button></div>
       ${SETTINGS.logo?`<img src="${mediaSrc(SETTINGS.logo)}" style="height:40px;margin-top:8px;" id="theme-logo-preview">`:''}
       <div class="upload-note">Recommended logo size: 300 x 80px (transparent PNG works best).</div>
     </div>
@@ -1760,8 +2089,7 @@ function adminTheme(){
       <div class="field">
         <label>Desktop / Laptop Hero Image URL</label>
         <div class="upload-box"><input type="url" placeholder="Desktop Hero Image URL yahan enter karein (https://...)" value="${esc(h.desktopImage||'')}" onchange="if(this.value){ const input=this; handleImageUrlInput(input,url=>{ SETTINGS.hero.desktopImage=url||null; saveKey(KEYS.settings,SETTINGS); }); }">
-        <input type="file" accept="image/*" onchange="handleLocalImageFileInput(this,url=>{SETTINGS.hero.desktopImage=addMediaDataUrl(url,'hero-desktopImage');saveKey(KEYS.settings,SETTINGS);})">
-        <button type="button" class="btn small ghost" style="margin-top:6px;" onclick="openMediaPicker((id)=>{SETTINGS.hero.desktopImage=id;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;"><label class="btn small">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{SETTINGS.hero.desktopImage=url;saveKey(KEYS.settings,SETTINGS);})"></label><button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{SETTINGS.hero.desktopImage=url;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button></div>
         ${h.desktopImage?`<img src="${mediaSrc(h.desktopImage)}" style="height:70px;margin-top:8px;border-radius:6px;">`:''}
         <div class="upload-note">Recommended: 1920 x 700px (wide banner).</div>
         ${h.desktopImage?`<button type="button" class="btn small danger" style="margin-top:8px;width:100%;" onclick="SETTINGS.hero.desktopImage=null;saveKey(KEYS.settings,SETTINGS);">Remove</button>`:''}
@@ -1770,8 +2098,7 @@ function adminTheme(){
       <div class="field">
         <label>Mobile Hero Image URL</label>
         <div class="upload-box"><input type="url" placeholder="Mobile Hero Image URL yahan enter karein (https://...)" value="${esc(h.mobileImage||'')}" onchange="if(this.value){ const input=this; handleImageUrlInput(input,url=>{ SETTINGS.hero.mobileImage=url||null; saveKey(KEYS.settings,SETTINGS); }); }">
-        <input type="file" accept="image/*" onchange="handleLocalImageFileInput(this,url=>{SETTINGS.hero.mobileImage=addMediaDataUrl(url,'hero-mobileImage');saveKey(KEYS.settings,SETTINGS);})">
-        <button type="button" class="btn small ghost" style="margin-top:6px;" onclick="openMediaPicker((id)=>{SETTINGS.hero.mobileImage=id;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;"><label class="btn small">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{SETTINGS.hero.mobileImage=url;saveKey(KEYS.settings,SETTINGS);})"></label><button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{SETTINGS.hero.mobileImage=url;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button></div>
         ${h.mobileImage?`<img src="${mediaSrc(h.mobileImage)}" style="height:70px;margin-top:8px;border-radius:6px;">`:''}
         <div class="upload-note">Recommended: 800 x 1000px (tall, portrait).</div>
         ${h.mobileImage?`<button type="button" class="btn small danger" style="margin-top:8px;width:100%;" onclick="SETTINGS.hero.mobileImage=null;saveKey(KEYS.settings,SETTINGS);">Remove</button>`:''}
@@ -1780,8 +2107,7 @@ function adminTheme(){
       <div class="field full">
         <label>Fallback Hero Image URL (used only if the mobile/desktop images above are not set)</label>
         <div class="upload-box"><input type="url" placeholder="Fallback Hero Image URL yahan enter karein (https://...)" value="${esc(h.image||'')}" onchange="if(this.value){ const input=this; handleImageUrlInput(input,url=>{ SETTINGS.hero.image=url||null; saveKey(KEYS.settings,SETTINGS); }); }">
-        <input type="file" accept="image/*" onchange="handleLocalImageFileInput(this,url=>{SETTINGS.hero.image=addMediaDataUrl(url,'hero-image');saveKey(KEYS.settings,SETTINGS);})">
-        <button type="button" class="btn small ghost" style="margin-top:6px;" onclick="openMediaPicker((id)=>{SETTINGS.hero.image=id;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;"><label class="btn small">Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{SETTINGS.hero.image=url;saveKey(KEYS.settings,SETTINGS);})"></label><button type="button" class="btn small ghost" onclick="openMediaPicker(url=>{SETTINGS.hero.image=url;saveKey(KEYS.settings,SETTINGS);})">Choose from Media Library</button></div>
         ${h.image?`<img src="${mediaSrc(h.image)}" style="height:70px;margin-top:8px;border-radius:6px;" id="hero-img-prev">`:''}
         ${h.image?`<button type="button" class="btn small danger" style="margin-top:8px;" onclick="SETTINGS.hero.image=null;saveKey(KEYS.settings,SETTINGS);toast('Fallback hero image removed');">Remove Fallback Image</button>`:''}
         </div>
@@ -1836,8 +2162,7 @@ function editNavItem(i){
     <form onsubmit="event.preventDefault(); saveNavItem(${i}, this);">
       <div class="form-grid">
         <div class="field"><label>Label</label><input required type="text" name="label" value="${esc(n.label)}"></div>
-        <div class="field"><label>URL / Link</label><input required type="text" name="url" value="${esc(n.url)}" placeholder="#/category/all or https://..."></div>
-        <div class="field full"><label>Quick link target</label><select onchange="if(this.value)this.form.url.value=this.value;"><option value="">— Select a store item —</option><option value="#/">Home</option><option value="#/category/all">All Products</option><option value="#/flash-sale">Flash Sale</option>${CATEGORIES.map(c=>`<option value="#/category/${esc(c.slug)}">${esc(c.name)}</option>`).join('')}${PAGES.map(p=>`<option value="#/page/${esc(p.slug)}">${esc(p.title)}</option>`).join('')}</select></div>
+        <div class="field"><label>URL</label><input required type="text" name="url" value="${esc(n.url)}"></div>
         <div class="field full"><label class="checkline"><input type="checkbox" name="newTab" ${n.newTab?'checked':''}> Open in new tab</label></div>
       </div>
       <div class="modal-close-row"><button type="button" class="btn ghost" onclick="closeModal()">Cancel</button><button type="submit" class="btn">Save</button></div>
@@ -1851,23 +2176,6 @@ function saveNavItem(i, form){
   saveKey(KEYS.settings, SETTINGS); closeModal();
 }
 
-
-function openMediaPicker(callback){
-  window.__mediaPickerCallback=callback;
-  const usable=MEDIA.filter(m=>m&&m.dataUrl);
-  showModal(`<h2>Select from Media Library</h2>
-    <p style="font-size:12px;color:var(--ink-soft);">Choose an existing image from your library.</p>
-    <div class="thumb-picker" style="gap:12px;max-height:55vh;overflow:auto;">
-      ${usable.length?usable.map(m=>`<button type="button" class="t" style="width:92px;height:92px;padding:0;background:#fff;" onclick="window.__mediaPickerCallback('${m.id}');closeModal();"><img src="${mediaSrc(m.id)}" style="width:100%;height:100%;object-fit:cover;"></button>`).join(''):'<div class="empty-state" style="width:100%;padding:25px;">No media yet. Upload an image in Media Library first.</div>'}
-    </div>
-    <div class="modal-close-row"><button type="button" class="btn ghost" onclick="closeModal()">Close</button></div>`);
-}
-function chooseImageFor(targetExpr){
-  openMediaPicker((id)=>{ try{ Function('id',targetExpr+'=id;')(id); }catch(e){ console.error(e); } });
-}
-function addMediaDataUrl(dataUrl,name){
-  const id=uid(); MEDIA.push({id,name:name||('image-'+id),dataUrl}); saveKey(KEYS.media,MEDIA); return id;
-}
 /* ---------- Media ---------- */
 function adminMedia(){
   return `<div class="admin-topbar"><h1>Media Library</h1></div>
@@ -1875,8 +2183,7 @@ function adminMedia(){
     <div class="upload-box">
       <input type="url" id="media-url-input" placeholder="Image URL yahan enter karein (https://...)" onkeydown="if(event.key==='Enter'){event.preventDefault();addMediaByUrl();}">
       <button type="button" class="btn small" style="margin-top:8px;" onclick="addMediaByUrl()">+ Add Image URL</button>
-      <input type="file" id="media-file-input" accept="image/*" multiple style="margin-top:8px;" onchange="addMediaFiles(this)">
-      <div class="upload-note">Upload from your phone/gallery. Images are embedded into this offline HTML store, so no local image storage or cloud backend account is required.</div>
+      <label class="btn small" style="margin-top:8px;">+ Upload from gallery<input type="file" accept="image/*" style="display:none" onchange="handleCloudinaryFileInput(this,url=>{MEDIA.push({id:uid(),name:url,dataUrl:url});saveKey(KEYS.media,MEDIA);toast('Image added to Media Library');})"></label>
       <div class="upload-note">Paste an image URL and click "Add Image URL" to save it to your library for reuse across the site.</div>
     </div>
   </div>
@@ -1896,21 +2203,14 @@ async function addMediaByUrl(){
   if(!url){ toast('Please enter an image URL'); return; }
   input.disabled=true;
   try{
-    const optimized=url;
-    MEDIA.push({id:uid(), name:'remote-image', dataUrl:optimized});
+    const optimized=await uploadImageUrlToCloudinary(url,'Media');
+    MEDIA.push({id:uid(), name:optimized, dataUrl:optimized});
     await saveKey(KEYS.media, MEDIA);
     input.value=''; toast('Image uploaded, compressed and added to media library');
   }catch(e){ toast('Image upload failed: '+e.message); }
   finally{ input.disabled=false; }
 }
 
-async function addMediaFiles(input){
-  const files=[...(input.files||[])]; if(!files.length)return;
-  input.disabled=true;
-  try{for(const file of files){const data=await fileToDataUrl(file);MEDIA.push({id:uid(),name:file.name,dataUrl:data});}saveKey(KEYS.media,MEDIA);toast(files.length+' image(s) added to Media Library');}
-  catch(e){toast('Could not add image: '+e.message);}
-  finally{input.disabled=false;input.value='';}
-}
 function deleteMedia(id){
   if(!confirm('Delete this image?')) return;
   MEDIA = MEDIA.filter(m=>m.id!==id);
@@ -1970,8 +2270,9 @@ function adminSettings(){
   const s=SETTINGS;
   return `<div class="admin-topbar"><h1>General Settings</h1></div>
   <div class="admin-card">
-    <div class="help-note"><b>Offline mode:</b> cloud backend and local image storage have been completely removed. Store data is saved in this browser's local storage, and uploaded images are embedded as data URLs so the downloaded HTML can work without a backend.</div>
-    <div class="help-note"><b>Important:</b> Because there is no backend, an admin change cannot automatically reach other people's browsers. Download the updated frontend HTML from <b>Admin → Code &amp; Export</b> and redeploy it to GitHub Pages/your host whenever you publish changes.</div>
+    <div class="help-note"><b>Cloudinary:</b> Images are uploaded to Cloudinary and can be reused anywhere in the admin panel through the Media Library.</div>
+    <div class="help-note"><b>Cloud data sync:</b> Every admin save (products, categories, flash sales, banners, homepage, theme, navigation, media, pages and settings) is written to Cloudinary as shared JSON state. Already-open storefronts check Cloudinary every 5 seconds and refresh automatically when the state changes.</div>
+    <div class="help-note"><b>Cloudinary preset requirement:</b> The <code>storex_preset</code> unsigned preset must allow <b>RAW</b> uploads and <b>Overwrite</b>. The Cloudinary API key/secret is intentionally not placed in this browser file.</div>
     <form onsubmit="event.preventDefault();saveGeneralSettings(this);">
       <div class="form-grid">
         <div class="field"><label>Site Name</label><input type="text" name="siteName" value="${esc(s.siteName)}"></div>
@@ -1987,9 +2288,11 @@ function adminSettings(){
   <div class="admin-card">
     <h3 style="margin-top:0;">Search — Trending Searches</h3>
     <p style="font-size:12.5px;color:var(--ink-soft);">These appear at the top of search and when the search box is opened. Suggestions are also generated automatically from product titles, tags and categories.</p>
-    <form onsubmit="event.preventDefault();const fd=new FormData(this);SETTINGS.search=Object.assign({},SETTINGS.search,{trending:fd.get('trending').split(',').map(x=>x.trim()).filter(Boolean),maxSuggestions:Number(fd.get('maxSuggestions'))||8});saveKey(KEYS.settings,SETTINGS);toast('Search settings saved');">
+    <form onsubmit="event.preventDefault();const fd=new FormData(this);const letters={};'abcdefghijklmnopqrstuvwxyz'.split('').forEach(k=>{letters[k]=(fd.get('letter_'+k)||'').split(',').map(x=>x.trim()).filter(Boolean);});SETTINGS.search=Object.assign({},SETTINGS.search,{trending:(fd.get('trending')||'').split(',').map(x=>x.trim()).filter(Boolean),maxSuggestions:Number(fd.get('maxSuggestions'))||10,letterSuggestions:letters});saveKey(KEYS.settings,SETTINGS);toast('Search settings saved');">
       <div class="field full"><label>Trending searches (comma separated)</label><textarea name="trending" style="min-height:90px;">${esc((s.search?.trending||[]).join(', '))}</textarea></div>
-      <div class="field"><label>Max live suggestions</label><input type="number" min="3" max="20" name="maxSuggestions" value="${Number(s.search?.maxSuggestions)||8}"></div>
+      <div class="field"><label>Max live suggestions</label><input type="number" min="3" max="20" name="maxSuggestions" value="${Number(s.search?.maxSuggestions)||10}"></div>
+      <div class="field full"><label>Custom suggestions for each letter / keyword</label><div class="form-grid">${'abcdefghijklmnopqrstuvwxyz'.split('').map(k=>`<div class="field"><label>${k.toUpperCase()}</label><input type="text" name="letter_${k}" value="${esc(((s.search?.letterSuggestions||{})[k]||[]).join(', '))}" placeholder="e.g. ${BUILTIN_LETTER_SUGGESTIONS[k].slice(0,3).join(', ')}"></div>`).join('')}</div></div>
+      <p style="font-size:12px;color:var(--ink-soft);">The search box also includes built-in keyword suggestions for every letter and combines them with your product titles, tags and categories.</p>
       <button class="btn" style="margin-top:10px;" type="submit">Save Search Settings</button>
     </form>
   </div>`;
@@ -2005,135 +2308,141 @@ function saveGeneralSettings(form){
   saveKey(KEYS.settings,SETTINGS);toast('Settings saved');
 }
 
+/* ---------- Frontend Code & Export ---------- */
+let FRONTEND_EXPORT_CACHE = '';
+let FRONTEND_EXPORT_URL = '';
 
-function serializeStoreState(){
-  return {settings:SETTINGS,products:PRODUCTS,categories:CATEGORIES,flashsales:FLASHSALES,banners:BANNERS,media:MEDIA,pages:PAGES};
-}
-function getCurrentHtmlSource(){
-  // Build a clean CUSTOMER-ONLY copy of the document.
-  const clone=document.documentElement.cloneNode(true);
-  const scripts=[...clone.querySelectorAll('script')];
-  const script=scripts.find(x=>x.textContent.includes('Store.X — single-file storefront'));
-  if(!script) throw new Error('Storefront source script not found');
-
-  const state=serializeStoreState();
-  const marker=`window.__STOREX_EMBEDDED_STATE__=${JSON.stringify(state)};`;
-  let js=script.textContent;
-
-  // Embed the current store data in the exported frontend.
-  if(js.includes('/* Store.X offline-first configuration:')){
-    js=js.replace('/* Store.X offline-first configuration:',marker+'\n/* Store.X offline-first configuration:');
-  }else{
-    js=marker+'\n'+js;
-  }
-
-  // Cut everything belonging to the Admin Panel. The public storefront code
-  // is located before this marker and the boot code is kept afterwards.
-  const adminMarker='/* ============================================================\n   ADMIN PANEL';
-  const initMarker='/* ================= INIT ================= */';
-  const adminStart=js.indexOf(adminMarker);
-  const initStart=js.lastIndexOf(initMarker);
-  if(adminStart!==-1){
-    const tail=initStart>adminStart ? js.slice(initStart) : 'boot();';
-    js=js.slice(0,adminStart)+'\n\n'+tail;
-  }
-
-  // Remove any admin-only state declarations/routes that could remain.
-  js=js.replace(/\nlet ADMIN_UNLOCKED\s*=\s*false;\s*/g,'\n');
-  js=js.replace(/\nlet ADMIN_VIEW\s*=\s*['"]dashboard['"];\s*/g,'\n');
-  js=js.replace(/\nlet ADMIN_DRAWER_OPEN\s*=\s*false;\s*/g,'\n');
-  js=js.replace(/if\(h\.startsWith\(['"]\/admin-of-storex['"]\)\)\{[\s\S]*?return;\s*\}\s*/,'');
-
-  // Replace the original application script with the public-only script.
-  scripts.forEach(s=>{ if(s!==script) s.remove(); });
-  script.textContent=js;
-
-  // Never export the Admin Panel DOM itself.
-  clone.body.innerHTML='<div id="app"></div>';
-  clone.body.appendChild(script);
-
-  // Remove admin CSS by marker when present.
-  const styles=[...clone.querySelectorAll('style')];
-  styles.forEach(style=>{
-    let css=style.textContent||'';
-    const cssStart=css.indexOf('/* ---------- Admin ---------- */');
-    if(cssStart!==-1) style.textContent=css.slice(0,cssStart);
-  });
-
-  // Make sure an accidental admin hash cannot be opened in the exported file.
-  return '<!DOCTYPE html>\n'+clone.outerHTML;
+function downloadBlobFile(content, filename, mime='text/html;charset=utf-8'){
+  const blob=new Blob([content],{type:mime});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download=filename; a.style.display='none';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
 
-function downloadStorefrontCode(){
+function buildFrontendExport(){
+  const app=document.getElementById('app');
+  if(!app) return '';
+
+  // Capture the real storefront shell, not the admin screen.
+  const previousApp=app.innerHTML;
+  const previousScroll=window.scrollY;
   try{
-    const html=getCurrentHtmlSource();
-    const blob=new Blob([html],{type:'text/html;charset=utf-8'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');
-    a.href=url;
-    a.download=(SETTINGS.siteName||'storex').replace(/[^a-z0-9-_]+/gi,'-').toLowerCase()+'-storefront.html';
-    a.style.display='none';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),3000);
-    toast('Frontend HTML downloaded successfully.');
-  }catch(e){
-    console.error(e);
-    toast('Export failed: '+e.message);
-  }
-}
+    app.innerHTML=renderHeader()+'<main>'+renderHome()+'</main>'+renderFooter()+renderMobileDrawer();
+    let html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
 
-function copyStorefrontCode(){
-  try{
-    const html=getCurrentHtmlSource();
-    const fallback=()=>{
-      const ta=document.createElement('textarea');
-      ta.value=html; ta.style.position='fixed'; ta.style.left='-9999px';
-      document.body.appendChild(ta); ta.focus(); ta.select();
-      let ok=false; try{ok=document.execCommand('copy');}catch(_){ok=false;}
-      ta.remove();
-      toast(ok?'Frontend code copied.':'Select the code in the box and copy it manually.');
+    // Remove all admin-only styling.
+    const adminCssStart=html.indexOf('/* ---------- Admin ---------- */');
+    const styleEnd=html.indexOf('</style>', adminCssStart);
+    if(adminCssStart>=0 && styleEnd>=0){
+      html=html.slice(0,adminCssStart)+html.slice(styleEnd);
+    }
+
+    // Remove everything from the ADMIN PANEL marker onward inside the application script.
+    const adminMarker='/* ============================================================\n   ADMIN PANEL\n   ============================================================ */';
+    const markerPos=html.indexOf(adminMarker);
+    if(markerPos>=0){
+      const scriptClose=html.indexOf('<'+ '/script>',markerPos);
+      if(scriptClose>=0){
+        html=html.slice(0,markerPos)+html.slice(scriptClose);
+      }
+    }
+
+    // Embed the current admin state so the exported file contains all current changes.
+    const state={
+      settings:SETTINGS,
+      products:PRODUCTS,
+      categories:CATEGORIES,
+      flashsales:FLASHSALES,
+      banners:BANNERS,
+      media:MEDIA,
+      pages:PAGES
     };
-    if(navigator.clipboard && window.isSecureContext){
-      navigator.clipboard.writeText(html).then(()=>toast('Frontend code copied.')).catch(fallback);
-    }else fallback();
-  }catch(e){ toast('Could not prepare code: '+e.message); }
+    const stateJson=JSON.stringify(state).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');
+
+    // Replace the original boot with a self-contained boot that starts from the embedded snapshot.
+    const bootOverride=`\n<script>\n/* Store.X frontend-only published snapshot */\nconst EXPORTED_STATE=${stateJson};\n\nfunction render(){\n  const h=route();\n  const app=document.getElementById('app');\n  let body='';\n  resetDefaultSEO();\n  if(h==='/' || h===''){ body=renderHome(); }\n  else if(h.startsWith('/product/')){ body=renderProductPage(decodeURIComponent(h.split('/product/')[1])); }\n  else if(h.startsWith('/category/')){ body=renderCategoryPage(decodeURIComponent(h.split('/category/')[1])); }\n  else if(h.startsWith('/flash-sale/')){ body=renderFlashSalePage(decodeURIComponent(h.split('/flash-sale/')[1])); }\n  else if(h==='/flash-sale'){ body=renderFlashSaleIndex(); }\n  else if(h.startsWith('/search')){ const q=new URLSearchParams(h.split('?')[1]||'').get('q')||''; body=renderSearchPage(q); }\n  else if(h.startsWith('/page/')){ body=renderCustomPage(decodeURIComponent(h.split('/page/')[1])); }\n  else { body=renderNotFound(); }\n  app.innerHTML=renderHeader()+'<main>'+body+'</main>'+renderFooter()+renderMobileDrawer();\n  wireStorefrontEvents();\n  startCountdowns();\n  initHeroSlider();\n  initFlashCarousels();\n  initFlashVisuals();\n}\n\nasync function boot(){\n  SETTINGS=JSON.parse(JSON.stringify(EXPORTED_STATE.settings||DEFAULT_SETTINGS));\n  SETTINGS=Object.assign({},DEFAULT_SETTINGS,SETTINGS,{\n    hero:Object.assign({},DEFAULT_SETTINGS.hero,SETTINGS.hero||{}),\n    footer:Object.assign({},DEFAULT_SETTINGS.footer,SETTINGS.footer||{},{social:Object.assign({},DEFAULT_SETTINGS.footer.social,(SETTINGS.footer&&SETTINGS.footer.social)||{})}),\n    search:Object.assign({},DEFAULT_SETTINGS.search,SETTINGS.search||{}),\n    mediaSizing:Object.assign({},DEFAULT_SETTINGS.mediaSizing,SETTINGS.mediaSizing||{})\n  });\n  PRODUCTS=JSON.parse(JSON.stringify(EXPORTED_STATE.products||[]));\n  CATEGORIES=JSON.parse(JSON.stringify(EXPORTED_STATE.categories||[]));\n  FLASHSALES=JSON.parse(JSON.stringify(EXPORTED_STATE.flashsales||[]));\n  BANNERS=JSON.parse(JSON.stringify(EXPORTED_STATE.banners||[]));\n  MEDIA=JSON.parse(JSON.stringify(EXPORTED_STATE.media||[]));\n  PAGES=JSON.parse(JSON.stringify(EXPORTED_STATE.pages||[]));\n  applyTheme();\n  injectGA();\n  window.addEventListener('hashchange',render);\n  render();\n}\n\nboot();\n` + '<' + '/script>';
+
+    // The original file has exactly one application script. Replace its closing tag with the override script.
+    const lastScriptClose=html.lastIndexOf('<'+ '/script>');
+    if(lastScriptClose>=0){
+      html=html.slice(0,lastScriptClose)+bootOverride+html.slice(lastScriptClose+9);
+    }else{
+      html+='\n'+bootOverride+'\n</body></html>';
+    }
+
+    // Remove admin-only body/UI state remnants and make the output clearly publishable.
+    html=html.replace(/<button class="admin-hamburger"[\s\S]*?<\/button>/g,'');
+    return html;
+  }finally{
+    app.innerHTML=previousApp;
+    window.scrollTo(0,previousScroll);
+  }
+}
+
+function refreshFrontendExport(){
+  FRONTEND_EXPORT_CACHE=buildFrontendExport();
+  const ta=document.getElementById('frontend-export-code');
+  if(ta) ta.value=FRONTEND_EXPORT_CACHE;
+  if(FRONTEND_EXPORT_URL){ try{URL.revokeObjectURL(FRONTEND_EXPORT_URL);}catch(_){} FRONTEND_EXPORT_URL=''; }
+  if(FRONTEND_EXPORT_CACHE){
+    FRONTEND_EXPORT_URL=URL.createObjectURL(new Blob([FRONTEND_EXPORT_CACHE],{type:'text/html;charset=utf-8'}));
+    const link=document.getElementById('frontend-download-link');
+    if(link){link.href=FRONTEND_EXPORT_URL;link.download=(SETTINGS.siteName||'storex').replace(/[^a-z0-9_-]+/gi,'-').toLowerCase()+'-frontend.html';}
+  }
+  const count=document.getElementById('frontend-code-size');
+  if(count) count.textContent=FRONTEND_EXPORT_CACHE ? `${Math.round(FRONTEND_EXPORT_CACHE.length/1024)} KB • Frontend only • Current changes embedded` : 'Unable to build export';
+}
+
+async function copyFrontendExport(){
+  const code=FRONTEND_EXPORT_CACHE||buildFrontendExport();
+  FRONTEND_EXPORT_CACHE=code;
+  try{
+    await navigator.clipboard.writeText(code);
+    toast('Full frontend code copied ✓');
+  }catch(_){
+    const ta=document.getElementById('frontend-export-code');
+    if(ta){ta.focus();ta.select();document.execCommand('copy');toast('Full frontend code copied ✓');}
+    else toast('Copy failed — select the code and copy it manually.');
+  }
+}
+
+function downloadFrontendExport(){
+  const code=FRONTEND_EXPORT_CACHE||buildFrontendExport();
+  if(!code){toast('Could not build frontend export');return;}
+  const name=(SETTINGS.siteName||'storex').replace(/[^a-z0-9_-]+/gi,'-').toLowerCase()+'-frontend.html';
+  downloadBlobFile(code,name);
+  toast('Frontend HTML downloaded ✓');
 }
 
 function adminCodeExport(){
-  let source='';
-  let error='';
-  try{source=getCurrentHtmlSource();}catch(e){error=e.message||String(e);}
-  const state=serializeStoreState();
-  const size=Math.round(JSON.stringify(state).length/1024);
-  return `<div class="admin-topbar"><h1>Code &amp; Export</h1></div>
+  const site=(SETTINGS&&SETTINGS.siteName)||'Store.X';
+  const sizeText=FRONTEND_EXPORT_CACHE ? `${Math.round(FRONTEND_EXPORT_CACHE.length/1024)} KB • Frontend only • Current changes embedded` : 'Generating current frontend code…';
+  return `<div class="admin-topbar"><div><h1>Code & Export</h1><p style="margin:4px 0 0;color:var(--ink-soft);font-size:13px;">Publishable customer storefront — no admin panel code is included.</p></div></div>
   <div class="admin-card">
-    <h3 style="margin-top:0;">Customer Store Frontend</h3>
-    <p style="font-size:13px;color:var(--ink-soft);">The export contains only the public storefront. Admin Panel code, admin controls and admin navigation are not included.</p>
-    <div class="stat-grid"><div class="stat-box"><b>${size} KB</b><span>Embedded store data</span></div><div class="stat-box"><b>${MEDIA.length}</b><span>Media items</span></div><div class="stat-box"><b>${PRODUCTS.length}</b><span>Products</span></div></div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
-      <button class="btn" onclick="downloadStorefrontCode()">⬇ Download Storefront HTML</button>
-      <button class="btn ghost" onclick="copyStorefrontCode()">Copy Frontend Code</button>
+    <div class="help-note"><b>What this contains:</b> the complete customer-facing frontend, with the latest Products, Categories, Flash Sales, Banners, Homepage, Theme, Navigation, Media and Pages changes embedded directly into the HTML. The admin panel is removed from the exported file.</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px;">
+      <button class="btn" type="button" onclick="refreshFrontendExport()">↻ Refresh Code</button>
+      <button class="btn" type="button" onclick="copyFrontendExport()">⧉ Copy Full Code</button>
+      <button class="btn" type="button" onclick="downloadFrontendExport()">↓ Download .html</button>
+      <a id="frontend-download-link" class="btn ghost" href="#" download>Direct Download Link</a>
     </div>
-    ${error?`<div class="help-note" style="margin-top:14px;color:#a11;"><b>Export preview error:</b> ${esc(error)}</div>`:''}
+    <div id="frontend-code-size" style="font-size:12px;color:var(--ink-soft);margin-bottom:8px;">${esc(sizeText)}</div>
+    <textarea id="frontend-export-code" spellcheck="false" readonly style="width:100%;height:min(72vh,760px);min-height:520px;resize:vertical;border:1px solid var(--line);border-radius:8px;padding:14px;background:#11151a;color:#e9edf2;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;tab-size:2;"></textarea>
   </div>
   <div class="admin-card">
-    <h3 style="margin-top:0;">Exported Frontend Code</h3>
-    <p style="font-size:12px;color:var(--ink-soft);">This box shows exactly the customer-facing HTML that will be downloaded. You can copy it directly.</p>
-    <textarea id="frontend-export-code" readonly spellcheck="false" style="width:100%;min-height:420px;box-sizing:border-box;font-family:monospace;font-size:11px;line-height:1.45;white-space:pre;overflow:auto;">${esc(source)}</textarea>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
-      <button class="btn small ghost" onclick="copyStorefrontCode()">Copy Code</button>
-      <button class="btn small ghost" onclick="const x=document.getElementById('frontend-export-code');x.focus();x.select();">Select All</button>
-    </div>
-  </div>
-  <div class="admin-card">
-    <h3 style="margin-top:0;">Publishing</h3>
-    <ol style="font-size:13px;color:var(--ink-soft);line-height:1.7;">
-      <li>Make your changes in the Admin Panel.</li><li>Open <b>Code &amp; Export</b>.</li><li>Click <b>Download Storefront HTML</b>.</li><li>Upload/replace your public <code>index.html</code> with that exported file.</li>
+    <h3 style="margin-top:0;">How to publish</h3>
+    <ol style="font-size:13px;color:var(--ink-soft);line-height:1.7;padding-left:20px;">
+      <li>Make your changes anywhere in the admin panel and save them.</li>
+      <li>Open <b>Code & Export</b>. The code is regenerated from the latest saved state.</li>
+      <li>Use <b>Copy Full Code</b> or <b>Download .html</b>.</li>
+      <li>Upload/publish that HTML file to your hosting. It works as a standalone Chrome-compatible storefront.</li>
     </ol>
   </div>`;
+  setTimeout(refreshFrontendExport,0);
 }
+
 function wireAdminEvents(){}
 
 /* ================= INIT ================= */
