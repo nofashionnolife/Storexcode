@@ -843,7 +843,18 @@ function renderHeader(){
 }
 function renderMobileDrawer(){
   if(!MOBILE_DRAWER_OPEN) return '';
-  const navLinks = SETTINGS.nav.map(n=>`<a href="${esc(n.url)}" onclick="MOBILE_DRAWER_OPEN=false;">${esc(n.label)}</a>`).join('');
+  const configured=Array.isArray(SETTINGS.nav)?SETTINGS.nav:[];
+  const built=[
+    {label:'Home',url:'#/'},
+    {label:'All Products',url:'#/category/all'},
+    {label:'Flash Sale',url:'#/flash-sale'},
+    ...CATEGORIES.filter(c=>c.status!=='hidden').slice(0,12).map(c=>({label:c.name,url:'#/category/'+c.slug})),
+    ...PAGES.filter(p=>p.status==='published').slice(0,12).map(p=>({label:p.title,url:'#/page/'+p.slug}))
+  ];
+  const merged=[...configured,...built].filter(x=>x&&x.label&&x.url);
+  const seen=new Set();
+  const navLinks=merged.filter(n=>{const k=String(n.url)+'|'+String(n.label);if(seen.has(k))return false;seen.add(k);return true;})
+    .map(n=>`<a href="${esc(n.url)}" ${n.newTab?'target="_blank" rel="noopener"':''} onclick="MOBILE_DRAWER_OPEN=false;">${esc(n.label)}</a>`).join('');
   return `<div class="mobile-drawer open" onclick="if(event.target===this){MOBILE_DRAWER_OPEN=false;render();}">
     <div class="mobile-drawer-panel">
       <button class="mobile-drawer-close" onclick="MOBILE_DRAWER_OPEN=false;render();">&times;</button>
@@ -1310,7 +1321,29 @@ function startCountdowns(){
   tick(); COUNTDOWN_TIMER = setInterval(tick,1000);
 }
 
-function wireStorefrontEvents(){}
+function wireStorefrontEvents(){
+  // Event delegation keeps storefront controls working after every hash-route render.
+  // Most controls use inline handlers, but delegation covers links/forms that are
+  // dynamically replaced and makes local-file Chrome usage more reliable.
+  const app=document.getElementById('app');
+  if(!app || app.dataset.storexWired==='1') return;
+  app.dataset.storexWired='1';
+  app.addEventListener('click',e=>{
+    const a=e.target.closest('a[href^="#/"]');
+    if(a){
+      const href=a.getAttribute('href');
+      if(href){ e.preventDefault(); location.hash=href.slice(1)||'/'; }
+    }
+  });
+  app.addEventListener('submit',e=>{
+    const form=e.target.closest('.search-form');
+    if(!form) return;
+    e.preventDefault();
+    const input=form.querySelector('input[name="q"]');
+    const q=(input?.value||'').trim();
+    if(q) location.hash='/search?q='+encodeURIComponent(q);
+  });
+}
 
 /* ============================================================
    ADMIN PANEL
@@ -2322,96 +2355,85 @@ function downloadBlobFile(content, filename, mime='text/html;charset=utf-8'){
 }
 
 function buildFrontendExport(){
-  const app=document.getElementById('app');
-  if(!app) return '';
-
-  // Capture the real storefront shell, not the admin screen.
-  const previousApp=app.innerHTML;
-  const previousScroll=window.scrollY;
+  // Build from the live application state rather than from the current admin DOM.
+  // This makes export deterministic even when Code & Export is opened immediately
+  // after a save, and guarantees the exported file contains the latest state.
+  let __exportApp=null, __exportPrevious='';
   try{
-    app.innerHTML=renderHeader()+'<main>'+renderHome()+'</main>'+renderFooter()+renderMobileDrawer();
+    __exportApp=document.getElementById('app');
+    if(!__exportApp) throw new Error('Storefront root not found');
+    __exportPrevious=__exportApp.innerHTML;
+    const state={
+      settings:JSON.parse(JSON.stringify(SETTINGS||DEFAULT_SETTINGS)),
+      products:JSON.parse(JSON.stringify(PRODUCTS||[])),
+      categories:JSON.parse(JSON.stringify(CATEGORIES||[])),
+      flashsales:JSON.parse(JSON.stringify(FLASHSALES||[])),
+      banners:JSON.parse(JSON.stringify(BANNERS||[])),
+      media:JSON.parse(JSON.stringify(MEDIA||[])),
+      pages:JSON.parse(JSON.stringify(PAGES||[]))
+    };
+    const stateJson=JSON.stringify(state)
+      .replace(/&/g,'\\u0026').replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
+
+    // Render the actual customer storefront into the live root first. This guarantees
+    // the captured body contains the real header, menu, search, hero, sections and footer.
+    __exportApp.innerHTML=renderHeader()+'<main>'+renderHome()+'</main>'+renderFooter();
     let html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
-
-    // Remove all admin-only styling.
     const adminCssStart=html.indexOf('/* ---------- Admin ---------- */');
-    const styleEnd=html.indexOf('</style>', adminCssStart);
-    if(adminCssStart>=0 && styleEnd>=0){
-      html=html.slice(0,adminCssStart)+html.slice(styleEnd);
-    }
+    const styleEnd=adminCssStart>=0?html.indexOf('</style>',adminCssStart):-1;
+    if(adminCssStart>=0 && styleEnd>=0) html=html.slice(0,adminCssStart)+html.slice(styleEnd+8);
 
-    // Remove everything from the ADMIN PANEL marker onward inside the application script.
     const adminMarker='/* ============================================================\n   ADMIN PANEL\n   ============================================================ */';
     const markerPos=html.indexOf(adminMarker);
     if(markerPos>=0){
       const scriptClose=html.indexOf('<'+ '/script>',markerPos);
-      if(scriptClose>=0){
-        html=html.slice(0,markerPos)+html.slice(scriptClose);
-      }
+      if(scriptClose>=0) html=html.slice(0,markerPos)+html.slice(scriptClose);
     }
 
-    // Embed the current admin state so the exported file contains all current changes.
-    const state={
-      settings:SETTINGS,
-      products:PRODUCTS,
-      categories:CATEGORIES,
-      flashsales:FLASHSALES,
-      banners:BANNERS,
-      media:MEDIA,
-      pages:PAGES
-    };
-    const stateJson=JSON.stringify(state).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');
+    const bootOverride=`\n<script>\n/* Store.X FRONTEND-ONLY PUBLISHED BUILD */\nconst EXPORTED_STATE=${stateJson};\n\nfunction applyExportedState(){\n  SETTINGS=Object.assign({},DEFAULT_SETTINGS,JSON.parse(JSON.stringify(EXPORTED_STATE.settings||{})),{\n    hero:Object.assign({},DEFAULT_SETTINGS.hero,(EXPORTED_STATE.settings&&EXPORTED_STATE.settings.hero)||{}),\n    footer:Object.assign({},DEFAULT_SETTINGS.footer,(EXPORTED_STATE.settings&&EXPORTED_STATE.settings.footer)||{}, {social:Object.assign({},DEFAULT_SETTINGS.footer.social,((EXPORTED_STATE.settings&&EXPORTED_STATE.settings.footer)||{}).social||{})}),\n    search:Object.assign({},DEFAULT_SETTINGS.search,(EXPORTED_STATE.settings&&EXPORTED_STATE.settings.search)||{}),\n    mediaSizing:Object.assign({},DEFAULT_SETTINGS.mediaSizing,(EXPORTED_STATE.settings&&EXPORTED_STATE.settings.mediaSizing)||{})\n  });\n  PRODUCTS=JSON.parse(JSON.stringify(EXPORTED_STATE.products||[]));\n  CATEGORIES=JSON.parse(JSON.stringify(EXPORTED_STATE.categories||[]));\n  FLASHSALES=JSON.parse(JSON.stringify(EXPORTED_STATE.flashsales||[]));\n  BANNERS=JSON.parse(JSON.stringify(EXPORTED_STATE.banners||[]));\n  MEDIA=JSON.parse(JSON.stringify(EXPORTED_STATE.media||[]));\n  PAGES=JSON.parse(JSON.stringify(EXPORTED_STATE.pages||[]));\n}\nfunction render(){\n  const h=route(),app=document.getElementById('app');\n  if(!app)return;\n  let body=''; resetDefaultSEO();\n  if(h==='/'||h==='') body=renderHome();\n  else if(h.startsWith('/product/')) body=renderProductPage(decodeURIComponent(h.slice('/product/'.length)));\n  else if(h.startsWith('/category/')) body=renderCategoryPage(decodeURIComponent(h.slice('/category/'.length)));\n  else if(h==='/flash-sale') body=renderFlashSaleIndex();\n  else if(h.startsWith('/flash-sale/')) body=renderFlashSalePage(decodeURIComponent(h.slice('/flash-sale/'.length)));\n  else if(h.startsWith('/search')) body=renderSearchPage(new URLSearchParams(h.split('?')[1]||'').get('q')||'');\n  else if(h.startsWith('/page/')) body=renderCustomPage(decodeURIComponent(h.slice('/page/'.length)));\n  else body=renderNotFound();\n  app.innerHTML=renderHeader()+'<main>'+body+'</main>'+renderFooter();\n  MOBILE_DRAWER_OPEN=false; MOBILE_SEARCH_OPEN=false;\n  wireStorefrontEvents(); startCountdowns(); initHeroSlider(); initFlashCarousels(); initFlashVisuals();\n}\nfunction boot(){\n  applyExportedState(); applyTheme(); injectGA();\n  if(!window.__storexExportBooted){\n    window.__storexExportBooted=true;\n    window.addEventListener('hashchange',render);\n  }\n  render();\n}\nboot();\n<\/script>`;
+    const lastClose=html.lastIndexOf('<'+ '/script>');
+    if(lastClose>=0) html=html.slice(0,lastClose)+bootOverride+html.slice(lastClose+9);
+    else html+=bootOverride+'\n</body></html>';
 
-    // Replace the original boot with a self-contained boot that starts from the embedded snapshot.
-    const bootOverride=`\n<script>\n/* Store.X frontend-only published snapshot */\nconst EXPORTED_STATE=${stateJson};\n\nfunction render(){\n  const h=route();\n  const app=document.getElementById('app');\n  let body='';\n  resetDefaultSEO();\n  if(h==='/' || h===''){ body=renderHome(); }\n  else if(h.startsWith('/product/')){ body=renderProductPage(decodeURIComponent(h.split('/product/')[1])); }\n  else if(h.startsWith('/category/')){ body=renderCategoryPage(decodeURIComponent(h.split('/category/')[1])); }\n  else if(h.startsWith('/flash-sale/')){ body=renderFlashSalePage(decodeURIComponent(h.split('/flash-sale/')[1])); }\n  else if(h==='/flash-sale'){ body=renderFlashSaleIndex(); }\n  else if(h.startsWith('/search')){ const q=new URLSearchParams(h.split('?')[1]||'').get('q')||''; body=renderSearchPage(q); }\n  else if(h.startsWith('/page/')){ body=renderCustomPage(decodeURIComponent(h.split('/page/')[1])); }\n  else { body=renderNotFound(); }\n  app.innerHTML=renderHeader()+'<main>'+body+'</main>'+renderFooter()+renderMobileDrawer();\n  wireStorefrontEvents();\n  startCountdowns();\n  initHeroSlider();\n  initFlashCarousels();\n  initFlashVisuals();\n}\n\nasync function boot(){\n  SETTINGS=JSON.parse(JSON.stringify(EXPORTED_STATE.settings||DEFAULT_SETTINGS));\n  SETTINGS=Object.assign({},DEFAULT_SETTINGS,SETTINGS,{\n    hero:Object.assign({},DEFAULT_SETTINGS.hero,SETTINGS.hero||{}),\n    footer:Object.assign({},DEFAULT_SETTINGS.footer,SETTINGS.footer||{},{social:Object.assign({},DEFAULT_SETTINGS.footer.social,(SETTINGS.footer&&SETTINGS.footer.social)||{})}),\n    search:Object.assign({},DEFAULT_SETTINGS.search,SETTINGS.search||{}),\n    mediaSizing:Object.assign({},DEFAULT_SETTINGS.mediaSizing,SETTINGS.mediaSizing||{})\n  });\n  PRODUCTS=JSON.parse(JSON.stringify(EXPORTED_STATE.products||[]));\n  CATEGORIES=JSON.parse(JSON.stringify(EXPORTED_STATE.categories||[]));\n  FLASHSALES=JSON.parse(JSON.stringify(EXPORTED_STATE.flashsales||[]));\n  BANNERS=JSON.parse(JSON.stringify(EXPORTED_STATE.banners||[]));\n  MEDIA=JSON.parse(JSON.stringify(EXPORTED_STATE.media||[]));\n  PAGES=JSON.parse(JSON.stringify(EXPORTED_STATE.pages||[]));\n  applyTheme();\n  injectGA();\n  window.addEventListener('hashchange',render);\n  render();\n}\n\nboot();\n` + '<' + '/script>';
-
-    // The original file has exactly one application script. Replace its closing tag with the override script.
-    const lastScriptClose=html.lastIndexOf('<'+ '/script>');
-    if(lastScriptClose>=0){
-      html=html.slice(0,lastScriptClose)+bootOverride+html.slice(lastScriptClose+9);
-    }else{
-      html+='\n'+bootOverride+'\n</body></html>';
-    }
-
-    // Remove admin-only body/UI state remnants and make the output clearly publishable.
-    html=html.replace(/<button class="admin-hamburger"[\s\S]*?<\/button>/g,'');
+    // Make local-file behavior independent of the original admin state/cache.
+    html=html.replace(/<body([^>]*)>/i,'<body$1>');
     return html;
+  }catch(err){
+    console.error('Store.X frontend export failed:',err);
+    toast('Export build failed: '+(err?.message||'unknown error'));
+    return '';
   }finally{
-    app.innerHTML=previousApp;
-    window.scrollTo(0,previousScroll);
+    if(__exportApp) __exportApp.innerHTML=__exportPrevious;
   }
 }
 
 function refreshFrontendExport(){
-  FRONTEND_EXPORT_CACHE=buildFrontendExport();
+  const code=buildFrontendExport();
+  FRONTEND_EXPORT_CACHE=code||'';
   const ta=document.getElementById('frontend-export-code');
   if(ta) ta.value=FRONTEND_EXPORT_CACHE;
-  if(FRONTEND_EXPORT_URL){ try{URL.revokeObjectURL(FRONTEND_EXPORT_URL);}catch(_){} FRONTEND_EXPORT_URL=''; }
+  if(FRONTEND_EXPORT_URL){try{URL.revokeObjectURL(FRONTEND_EXPORT_URL);}catch(_){} FRONTEND_EXPORT_URL='';}
   if(FRONTEND_EXPORT_CACHE){
     FRONTEND_EXPORT_URL=URL.createObjectURL(new Blob([FRONTEND_EXPORT_CACHE],{type:'text/html;charset=utf-8'}));
     const link=document.getElementById('frontend-download-link');
-    if(link){link.href=FRONTEND_EXPORT_URL;link.download=(SETTINGS.siteName||'storex').replace(/[^a-z0-9_-]+/gi,'-').toLowerCase()+'-frontend.html';}
+    if(link){link.href=FRONTEND_EXPORT_URL;link.download=((SETTINGS?.siteName)||'storex').replace(/[^a-z0-9_-]+/gi,'-').toLowerCase()+'-frontend.html';}
   }
   const count=document.getElementById('frontend-code-size');
-  if(count) count.textContent=FRONTEND_EXPORT_CACHE ? `${Math.round(FRONTEND_EXPORT_CACHE.length/1024)} KB • Frontend only • Current changes embedded` : 'Unable to build export';
+  if(count) count.textContent=FRONTEND_EXPORT_CACHE?`${Math.round(FRONTEND_EXPORT_CACHE.length/1024)} KB • Frontend only • Latest saved state embedded`:'Export unavailable';
+  return FRONTEND_EXPORT_CACHE;
 }
 
 async function copyFrontendExport(){
-  const code=FRONTEND_EXPORT_CACHE||buildFrontendExport();
-  FRONTEND_EXPORT_CACHE=code;
-  try{
-    await navigator.clipboard.writeText(code);
-    toast('Full frontend code copied ✓');
-  }catch(_){
-    const ta=document.getElementById('frontend-export-code');
-    if(ta){ta.focus();ta.select();document.execCommand('copy');toast('Full frontend code copied ✓');}
-    else toast('Copy failed — select the code and copy it manually.');
-  }
+  const code=FRONTEND_EXPORT_CACHE||refreshFrontendExport();
+  if(!code){toast('Nothing to copy — export could not be generated.');return;}
+  try{await navigator.clipboard.writeText(code);toast('Full frontend code copied ✓');}
+  catch(_){const ta=document.getElementById('frontend-export-code');if(ta){ta.focus();ta.select();document.execCommand('copy');toast('Full frontend code copied ✓');}else toast('Copy failed — select the code manually.');}
 }
 
 function downloadFrontendExport(){
-  const code=FRONTEND_EXPORT_CACHE||buildFrontendExport();
+  const code=FRONTEND_EXPORT_CACHE||refreshFrontendExport();
   if(!code){toast('Could not build frontend export');return;}
-  const name=(SETTINGS.siteName||'storex').replace(/[^a-z0-9_-]+/gi,'-').toLowerCase()+'-frontend.html';
+  const name=((SETTINGS?.siteName)||'storex').replace(/[^a-z0-9_-]+/gi,'-').toLowerCase()+'-frontend.html';
   downloadBlobFile(code,name);
   toast('Frontend HTML downloaded ✓');
 }
@@ -2440,7 +2462,8 @@ function adminCodeExport(){
       <li>Upload/publish that HTML file to your hosting. It works as a standalone Chrome-compatible storefront.</li>
     </ol>
   </div>`;
-  setTimeout(refreshFrontendExport,0);
+  refreshFrontendExport();
+  setTimeout(refreshFrontendExport,50);
 }
 
 function wireAdminEvents(){}
