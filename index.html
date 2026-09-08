@@ -316,6 +316,14 @@ img{max-width:100%;display:block;}
   .admin-sidebar .group-label{display:block;}
   .admin-main{padding:70px 16px 26px;}
 }
+
+/* ---------- Performance ---------- */
+html{scroll-behavior:smooth;}
+.section{content-visibility:auto;contain-intrinsic-size:1px 420px;}
+.card,.cat-card,.spotlight-card,.promo-banner,.flash-carousel{contain:layout paint;}
+img{height:auto;}
+img[loading="lazy"]{content-visibility:auto;}
+
 </style>
 </head>
 <body>
@@ -547,6 +555,20 @@ function showModal(contentHtml){
 }
 
 
+
+/* ---------- Performance helpers ---------- */
+function optimizeRenderedImages(){
+  const images=document.querySelectorAll('img');
+  images.forEach((img,i)=>{
+    img.decoding='async';
+    if(i>2 && !img.hasAttribute('loading')) img.loading='lazy';
+  });
+}
+function runAfterPaint(fn){
+  if('requestIdleCallback' in window) requestIdleCallback(fn,{timeout:1200});
+  else setTimeout(fn,120);
+}
+
 /* ================= ROUTER ================= */
 function route(){ return location.hash.replace(/^#/,'') || '/'; }
 
@@ -572,10 +594,9 @@ function render(){
   app.innerHTML = renderHeader() + '<main>'+body+'</main>' + renderFooter() + renderMobileDrawer();
   window.scrollTo(0,0);
   wireStorefrontEvents();
+  optimizeRenderedImages();
   startCountdowns();
-  initHeroSlider();
-  initFlashCarousels();
-  initFlashVisuals();
+  runAfterPaint(()=>{ initHeroSlider(); initFlashCarousels(); initFlashVisuals(); });
 }
 
 /* ================= HEADER / FOOTER ================= */
@@ -2082,17 +2103,48 @@ function serializeStoreState(){
   return {settings:SETTINGS,products:PRODUCTS,categories:CATEGORIES,flashsales:FLASHSALES,banners:BANNERS,media:MEDIA,pages:PAGES};
 }
 function getCurrentHtmlSource(){
-  // Export ONLY the public storefront. Never include the admin panel/router/UI.
+  /*
+   * Build a CLEAN public storefront document.
+   * Do not clone the current <body>: if the admin is open, cloning it would
+   * accidentally export admin HTML. The exported JavaScript is also cut at
+   * the ADMIN PANEL boundary, so admin functions are not shipped to customers.
+   */
   const clone=document.documentElement.cloneNode(true);
-  const styles=[...clone.querySelectorAll('style')];
-  styles.forEach(style=>{
-    style.textContent=style.textContent.replace(/\/\* ---------- Admin ---------- \*\/[\s\S]*?(?=\/\* ---------- Empty \/ error states ---------- \*\/)/,'');
+
+  // Remove admin-only CSS, if present.
+  [...clone.querySelectorAll('style')].forEach(style=>{
+    style.textContent=style.textContent.replace(
+      /\/\* ---------- Admin ---------- \*\/[\s\S]*?(?=\/\* ---------- Empty \/ error states ---------- \*\/)/,
+      ''
+    );
   });
-  const script=[...clone.querySelectorAll('script')].find(x=>x.textContent.includes('Store.X — single-file storefront'));
+
+  // Remove the current admin/storefront DOM completely.
+  clone.body.innerHTML='<div id="app"></div>';
+
+  const script=[...clone.querySelectorAll('script')]
+    .find(x=>x.textContent.includes('Store.X — single-file storefront'));
+
   if(script){
     let js=script.textContent;
-    // Replace the full admin-aware router with the storefront-only router.
-    js=js.replace(/\/\* ================= ROUTER ================= \*\/[\s\S]*?(?=\/\* ================= INIT ================= \*\/)/, `/* ================= ROUTER ================= */
+
+    // Keep only the storefront runtime. Everything beginning with the
+    // ADMIN PANEL marker is omitted from the customer download.
+    js=js.replace(
+      /\/\* ============================================================\s*ADMIN PANEL\s*[\s\S]*?\*\/[\s\S]*?(?=\/\* ================= INIT ================= \*\/)/,
+      ''
+    );
+
+    // Remove admin-only state declarations, if they exist in the retained code.
+    js=js.replace(
+      /let ADMIN_UNLOCKED = false;\s*let ADMIN_VIEW = 'dashboard';\s*let ADMIN_DRAWER_OPEN = false;\s*/g,
+      ''
+    );
+
+    // Replace the router with a storefront-only router.
+    js=js.replace(
+      /\/\* ================= ROUTER ================= \*\/[\s\S]*?(?=\/\* ================= INIT ================= \*\/)/,
+      `/* ================= ROUTER ================= */
 function route(){ return location.hash.replace(/^#/,'') || '/'; }
 function render(){
   const h=route(), app=document.getElementById('app'); let body=''; resetDefaultSEO();
@@ -2101,31 +2153,64 @@ function render(){
   else if(h.startsWith('/category/')) body=renderCategoryPage(decodeURIComponent(h.split('/category/')[1]));
   else if(h.startsWith('/flash-sale/')) body=renderFlashSalePage(decodeURIComponent(h.split('/flash-sale/')[1]));
   else if(h==='/flash-sale') body=renderFlashSaleIndex();
-  else if(h.startsWith('/search')) { const q=new URLSearchParams(h.split('?')[1]||'').get('q')||''; body=renderSearchPage(q); }
+  else if(h.startsWith('/search')) {
+    const q=new URLSearchParams(h.split('?')[1]||'').get('q')||'';
+    body=renderSearchPage(q);
+  }
   else if(h.startsWith('/page/')) body=renderCustomPage(decodeURIComponent(h.split('/page/')[1]));
   else body=renderNotFound();
   app.innerHTML=renderHeader()+'<main>'+body+'</main>'+renderFooter()+renderMobileDrawer();
-  window.scrollTo(0,0); wireStorefrontEvents(); startCountdowns(); initHeroSlider(); initFlashCarousels(); initFlashVisuals();
+  window.scrollTo(0,0);
+  wireStorefrontEvents();
+  optimizeRenderedImages();
+  startCountdowns();
+  runAfterPaint(()=>{ initHeroSlider(); initFlashCarousels(); initFlashVisuals(); });
 }
 
-`);
-    // Remove admin initialization/state declarations that would expose admin functionality.
-    js=js.replace(/let ADMIN_UNLOCKED = false;\nlet ADMIN_VIEW = 'dashboard';\nlet ADMIN_DRAWER_OPEN = false;\n/,'');
-    js=js.replace(/\/\* ================= INIT ================= \*\/[\s\S]*$/, '/* ================= INIT ================= */\nboot();\n');
+`
+    );
+
+    // Replace any remaining INIT section with a storefront boot only.
+    js=js.replace(
+      /\/\* ================= INIT ================= \*\/[\s\S]*$/,
+      '/* ================= INIT ================= */\nboot();\n'
+    );
+
+    // Embed the exact current store data in the customer file.
     const state=serializeStoreState();
     const marker=`window.__STOREX_EMBEDDED_STATE__=${JSON.stringify(state)};`;
-    js=js.replace('/* Store.X offline-first configuration:', marker+'\n/* Store.X offline-first configuration:');
+    js=js.replace(
+      '/* Store.X offline-first configuration:',
+      marker+'\n/* Store.X offline-first configuration:'
+    );
+
     script.textContent=js;
   }
-  // The exported HTML starts directly with the storefront app; no admin DOM is rendered.
+
+  // Remove any remaining admin-looking elements/scripts/styles from the
+  // document shell. The customer file contains only #app + storefront CSS/JS.
+  clone.querySelectorAll('.admin-shell,.admin-sidebar,.admin-main,.admin-hamburger,.admin-drawer-overlay,#modal-overlay').forEach(el=>el.remove());
+
   return '<!DOCTYPE html>\n'+clone.outerHTML;
 }
+
 function downloadStorefrontCode(){
-  const html=getCurrentHtmlSource();
-  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(SETTINGS.siteName||'storex').replace(/[^a-z0-9-_]+/gi,'-').toLowerCase()+'.html';a.click();
-  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
-  toast('Frontend HTML downloaded with current store data.');
+  try{
+    const html=getCurrentHtmlSource();
+    if(!html || !html.includes('id="app"')) throw new Error('Could not build storefront export');
+    const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;
+    a.download=(SETTINGS.siteName||'storex').replace(/[^a-z0-9-_]+/gi,'-').toLowerCase()+'.html';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+    toast('Frontend-only HTML downloaded successfully.');
+  }catch(e){
+    toast('Export failed: '+(e.message||'Unknown error'));
+  }
 }
 function adminCodeExport(){
   const state=serializeStoreState();
@@ -2144,7 +2229,13 @@ function adminCodeExport(){
     </ol>
     <div class="help-note">This is intentionally backend-free. A static GitHub HTML file cannot receive future admin changes from a different device unless you add a backend or redeploy the updated exported file.</div>
   </div>
-  <div class="admin-card"><h3 style="margin-top:0;">Current frontend source</h3><textarea readonly style="min-height:260px;font-family:monospace;font-size:11px;">${esc(getCurrentHtmlSource())}</textarea></div>`;
+  <div class="admin-card">
+    <h3 style="margin-top:0;">Export contents</h3>
+    <p style="font-size:13px;color:var(--ink-soft);margin-bottom:0;">
+      The download is a standalone <b>customer storefront only</b>. It contains the public pages, current store data and media needed by the storefront.
+      Admin login, dashboard, settings, Code &amp; Export, admin navigation and admin functions are excluded from the exported file.
+    </p>
+  </div>`;
 }
 function wireAdminEvents(){}
 
